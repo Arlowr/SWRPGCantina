@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="SWRPGCantina.TheCantina.Views.CantinaMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             
+              MinWidth="1422" MinHeight="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Stretch="Uniform" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
+                    <Button Command="{Binding ToSWRPGHomeCommand}"
+                        Grid.Row="0">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Image Stretch="Uniform"
+                                Source="/SWRPGCantina.TheCantina;component/Images/bobafett.jpg"/>
+                    </Button>
+                    <TextBlock Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                        FontSize="30" FontWeight="Bold" Foreground="#FFE81F" 
+                        Text="SWRPG"/>
+                </Grid>
+            </Viewbox>
+            <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" Width="260"
+                    Command="{Binding SWRPGToPageCommand}" CommandParameter="Encounters">
+                <TextBlock TextWrapping="Wrap" FontSize="28" Foreground="#FFE81F" 
+                           Text="Encounter Builder"/>
+            </Button>
+            <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" Width="260"
+                    Command="{Binding SWRPGToPageCommand}" CommandParameter="Players">
+                <TextBlock TextWrapping="Wrap" FontSize="28" Foreground="#FFE81F" 
+                           Text="Players"/>
+            </Button>
+            <Button Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" Width="260"
+                    Command="{Binding SWRPGToPageCommand}" CommandParameter="NPCCreator">
+                <TextBlock TextWrapping="Wrap" FontSize="28" Foreground="#FFE81F"
+                           Text="Adversaries"/>
+            </Button>
+            <Button Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" Width="260"
+                    Command="{Binding SWRPGToPageCommand}" CommandParameter="SpecTalents">
+                <TextBlock TextWrapping="Wrap" FontSize="28" Foreground="#FFE81F" 
+                           Text="Specs and Talents"/>
+            </Button>
+        </Grid>
+        <ContentControl Grid.Row="1"  BorderBrush="Transparent" Background="Transparent"
+                        prism:RegionManager.RegionName="SWContentRegion"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="SWRPGCantina.TheCantina.Views.SWHomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+        Margin="10,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.25*" MinWidth="50"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Viewbox Stretch="Uniform" Grid.Column="0" Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Command="{Binding NavigateCommand}" CommandParameter="EncounterCreator"
+                Height="350" Margin="5"
+                BorderThickness="5">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="DarkGoldenrod"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Stretch="Uniform"
+                    Source="/SWRPGCantina.TheCantina;component/Images/swrpgfight.jpg"/>
+                </Button>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        FontSize="24" FontWeight="DemiBold" Foreground="Red"
+                        Text="Encounter Builder"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox Stretch="Uniform"  Grid.Column="2" Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Command="{Binding NavigateCommand}" CommandParameter="Players"
+                 Height="350" Margin="5"
+                BorderThickness="5">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="DarkGoldenrod"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Stretch="Uniform"
+                   Source="/SWRPGCantina.TheCantina;component/Images/swmando.jpg"/>
+                </Button>
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        FontSize="24" FontWeight="DemiBold" Foreground="Red"
+                        Text="Players"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox Stretch="Uniform"  Grid.Column="0" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Command="{Binding NavigateCommand}" CommandParameter="NPCs"
+                 Height="350" Margin="5"
+                BorderThickness="5">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="DarkGoldenrod"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Stretch="Uniform"
+                   Source="/SWRPGCantina.TheCantina;component/Images/thrawn.jpg"/>
+                </Button>
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        FontSize="24" FontWeight="DemiBold"
+                        Text="Allies and Enemies" Foreground="#FFE81F"/>
+            </Grid>
+        </Viewbox>
+        <Viewbox Stretch="Uniform"  Grid.Column="2" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Command="{Binding NavigateCommand}" CommandParameter="SpecsAndTalents"
+                 Height="350" Margin="5"
+                BorderThickness="5">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="DarkGoldenrod"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Stretch="Uniform"
+                   Source="/SWRPGCantina.TheCantina;component/Images/r2hacking.jpg"/>
+                </Button>
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="5"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        FontSize="24" FontWeight="DemiBold"
+                        Text="Specs and Talents" Foreground="Red"/>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

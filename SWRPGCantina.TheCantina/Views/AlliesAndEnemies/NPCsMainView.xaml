@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="SWRPGCantina.TheCantina.Views.AlliesAndEnemies.NPCsMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:generics="clr-namespace:SWRPGCantina.Core.Generics;assembly=SWRPGCantina.Core"
+             xmlns:local="clr-namespace:SWRPGCantina.TheCantina.Views.AlliesAndEnemies"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:conv="clr-namespace:MyWPFCommonConverters;assembly=MyWPFCommonConverters"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             MinHeight="700" MinWidth="1600">
+    <UserControl.Resources>
+        <conv:NegatableBooleanToSizeConverter x:Key="SizeConverter"/>
+        <conv:NegatableBooleanToSizeConverter x:Key="NegSizeConverter" Negate="True"/>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Header" Value="{Binding DataContext.TabTitle}"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center"
+                                            Margin="0,0,7,0" FontSize="12" FontWeight="Bold" Content="{Binding}"/>
+                            <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <generics:CloseTabAction/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Button.ContentTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <iconPacks:RPGAwesome Width="20" Height="20" Kind="Skull"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Button.ContentTemplate>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" MinWidth="150"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                            Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                            <TextBlock Margin="5" FontSize="12" Text="Search NPCs:"/>
+                            <TextBox FontSize="12" MinHeight="30" MinWidth="180"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"
+                         Text="{Binding SearchFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                        Margin="5" Padding="5" MinWidth="100"
+                        Command="{Binding ResetSearchCommand}">
+                            <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                               Text="Reset Search"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Margin="5" FontSize="12" Text="NPC:"/>
+                        <ComboBox FontSize="12" MinHeight="30" MinWidth="180"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"
+                        ItemsSource="{Binding ListedNPCs, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedNPC}"
+                        DisplayMemberPath="Name">
+                        </ComboBox>
+                    </StackPanel>
+                    <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MinWidth="100"
+                    Command="{Binding SelectNPCCommand}">
+                        <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="Select NPC"/>
+                    </Button>
+                </StackPanel>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding IsNeutrals, Converter={StaticResource NegSizeConverter}}"/>
+                        <RowDefinition Height="{Binding IsNeutrals, Converter={StaticResource SizeConverter}}"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="1" Stretch="Uniform" MaxHeight="180"
+                                Source="/SWRPGCantina.TheCantina;component/Images/zapneutral.jpg"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Row="0" Margin="5" HorizontalAlignment="Center"
+                        FlowDirection="RightToLeft"
+                        Content=":Filters Enabled"  FontSize="12"
+                        IsChecked="{Binding FiltersEnabled}">
+                    <CheckBox.Resources>
+                        <Style TargetType="{x:Type Path}">
+                            <Setter Property="FlowDirection" Value="LeftToRight"/>
+                        </Style>
+                    </CheckBox.Resources>
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0"
+                        Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                        <TextBlock Margin="5" FontSize="12" Text="Type Filter:"/>
+                        <ComboBox FontSize="12" MinHeight="30" MinWidth="100"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                 ItemsSource="{Binding NPCTypeFilter}" SelectedItem="{Binding SelectedTypeFilter}"/>
+                    </StackPanel>
+                </Grid>
+
+
+                <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" Width="100"
+                    Command="{Binding NewNPCCommand}">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="New NPC"/>
+                </Button>
+            </Grid>
+        </Grid>
+        <TabControl Grid.Column="1"  BorderBrush="SandyBrown" Background="Transparent"
+                        prism:RegionManager.RegionName="NPCWindow"/>
+    </Grid>
+</UserControl>

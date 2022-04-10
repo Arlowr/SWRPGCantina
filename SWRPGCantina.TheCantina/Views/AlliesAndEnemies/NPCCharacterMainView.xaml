@@ -1,0 +1,239 @@
+﻿<UserControl x:Class="SWRPGCantina.TheCantina.Views.AlliesAndEnemies.NPCCharacterMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWRPGCantina.TheCantina.Views.AlliesAndEnemies"
+             xmlns:conv="clr-namespace:MyWPFCommonConverters;assembly=MyWPFCommonConverters"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             MinHeight="700" MinWidth="1422">
+    <UserControl.Resources>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*" MinHeight="40"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*" MinHeight="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                         Width="200" Height="30"
+                         Text="{Binding NPC.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="20" FontWeight="ExtraBold"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"
+                        Text="NPC Type:"/>
+                    <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center"
+                          MinWidth="100" Height="30"
+                              ItemsSource="{Binding NPCTypes}" SelectedItem="{Binding NPC.NPCType}" FontSize="20"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Width="100" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"
+                        Background="SteelBlue">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Orientation="Vertical" >
+                        <Border Background="White" BorderBrush="Black"
+                        CornerRadius="40" Height="40" Width="40">
+                            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="30"
+                            Background="Transparent" BorderBrush="Transparent" FontSize="22"
+                            Text="{Binding NPC.Brawn, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Border Width="90" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Background="SaddleBrown" CornerRadius="10">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Foreground="White" FontSize="12" Text="BRAWN"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Width="100" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"
+                        Background="SteelBlue">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Orientation="Vertical" >
+                        <Border Background="White" BorderBrush="Black"
+                        CornerRadius="40" Height="40" Width="40">
+                            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="30"
+                            Background="Transparent" BorderBrush="Transparent" FontSize="22"
+                            Text="{Binding NPC.Agility, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Border Width="90" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Background="SaddleBrown" CornerRadius="10">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Foreground="White" FontSize="12" Text="AGILITY"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Width="100" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"
+                        Background="SteelBlue">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Orientation="Vertical" >
+                        <Border Background="White" BorderBrush="Black"
+                        CornerRadius="40" Height="40" Width="40">
+                            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="30"
+                            Background="Transparent" BorderBrush="Transparent" FontSize="22"
+                            Text="{Binding NPC.Intellect, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Border Width="90" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Background="SaddleBrown" CornerRadius="10">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Foreground="White" FontSize="12" Text="INTELLECT"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="3" Width="100" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"
+                        Background="SteelBlue">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Orientation="Vertical" >
+                        <Border Background="White" BorderBrush="Black"
+                        CornerRadius="40" Height="40" Width="40">
+                            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="30"
+                            Background="Transparent" BorderBrush="Transparent" FontSize="22"
+                            Text="{Binding NPC.Cunning, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Border Width="90" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Background="SaddleBrown" CornerRadius="10">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Foreground="White" FontSize="12" Text="CUNNING"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="4" Width="100" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"
+                        Background="SteelBlue">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Orientation="Vertical" >
+                        <Border Background="White" BorderBrush="Black"
+                        CornerRadius="40" Height="40" Width="40">
+                            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="30"
+                            Background="Transparent" BorderBrush="Transparent" FontSize="22"
+                            Text="{Binding NPC.Willpower, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Border Width="90" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Background="SaddleBrown" CornerRadius="10">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Foreground="White" FontSize="12" Text="WILLPOWER"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="5" Width="100" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="10"
+                        Background="SteelBlue">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Orientation="Vertical" >
+                        <Border Background="White" BorderBrush="Black"
+                        CornerRadius="40" Height="40" Width="40">
+                            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="30"
+                            Background="Transparent" BorderBrush="Transparent" FontSize="22"
+                            Text="{Binding NPC.Presence, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Border>
+                        <Border Width="90" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Background="SaddleBrown" CornerRadius="10">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Foreground="White" FontSize="12" Text="PRESENCE"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SandyBrown" BorderThickness="5" BorderBrush="SaddleBrown" Foreground="Black" 
+                    Margin="5" Padding="5" Width="100"
+                    Command="{Binding NPCDetailsWindowCommand}" CommandParameter="Skills">
+                <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="White" 
+                           Text="Skills"/>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SandyBrown" BorderThickness="5" BorderBrush="SaddleBrown" Foreground="Black" 
+                    Margin="5" Padding="5" Width="100"
+                    Command="{Binding NPCDetailsWindowCommand}" CommandParameter="Talents">
+                <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="White" 
+                           Text="Talents"/>
+            </Button>
+            <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SandyBrown" BorderThickness="5" BorderBrush="SaddleBrown" Foreground="Black" 
+                    Margin="5" Padding="5" Width="100"
+                    Command="{Binding NPCDetailsWindowCommand}" CommandParameter="Abilities">
+                <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="White" 
+                           Text="Abilities"/>
+            </Button>
+            <Button Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SandyBrown" BorderThickness="5" BorderBrush="SaddleBrown" Foreground="Black" 
+                    Margin="5" Padding="5" Width="100"
+                    Command="{Binding NPCDetailsWindowCommand}" CommandParameter="Equipment">
+                <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="White" 
+                           Text="Equipment"/>
+            </Button>
+            <Button Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SandyBrown" BorderThickness="5" BorderBrush="SaddleBrown" Foreground="Black" 
+                    Margin="5" Padding="5" Width="100"
+                    Command="{Binding NPCDetailsWindowCommand}" CommandParameter="Description">
+                <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="White" 
+                           Text="Description"/>
+            </Button>
+        </Grid>
+        <ContentControl Grid.Row="2"  BorderBrush="Transparent" Background="Transparent"
+                        prism:RegionManager.RegionName="{Binding NPCDetailsWindowName}"/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" Width="100"
+                    Command="{Binding UpdateCommand}">
+                <TextBlock TextWrapping="Wrap" FontSize="18" Foreground="#FFE81F" 
+                           Text="Update"/>
+            </Button>
+            <Border Grid.Column="2" Visibility="{Binding UpdatedNPC, Converter={StaticResource VisConverter}}">
+                <TextBlock Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Updated" Foreground="Green" FontSize="20" FontWeight="Bold" Visibility="{Binding UpdateNPCSucess, Converter={StaticResource VisConverter}}"/>
+            </Border>
+            <Border Grid.Column="2" Visibility="{Binding UpdatedNPC, Converter={StaticResource VisConverter}}">
+                <TextBlock Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Update Failed" Foreground="Red" FontSize="20" FontWeight="Bold" Visibility="{Binding UpdateNPCSucess, Converter={StaticResource NegVisConverter}}"/>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

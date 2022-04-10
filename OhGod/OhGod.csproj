@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>OhGod</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Images\bobafett.jpg" />
+    <None Remove="Images\r2hacking.jpg" />
+    <None Remove="Images\swfdrpg.jpg" />
+    <None Remove="Images\swmando.jpg" />
+    <None Remove="Images\swrpgfight.jpg" />
+    <None Remove="Images\thrawn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bobafett.jpg" />
+    <Resource Include="Images\r2hacking.jpg" />
+    <Resource Include="Images\swfdrpg.jpg" />
+    <Resource Include="Images\swmando.jpg" />
+    <Resource Include="Images\swrpgfight.jpg" />
+    <Resource Include="Images\thrawn.jpg" />
+  </ItemGroup>
+</Project>
