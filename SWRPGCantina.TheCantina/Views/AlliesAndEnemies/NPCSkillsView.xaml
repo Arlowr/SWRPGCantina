@@ -88,7 +88,27 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
                        Text="Astrogation:"/>
-            
+
+            <Grid Grid.Column="1">
+                <Button HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding IncreaseSkillCommand}" CommandParameter="AstroLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock Foreground="#FFE81F"
+                    FontSize="16" Text="{Binding Astrogation.Rank}"/>
+
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding IncreaseSkillCommand}" CommandParameter="AstroRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
             
         </Grid>
     </Grid>
