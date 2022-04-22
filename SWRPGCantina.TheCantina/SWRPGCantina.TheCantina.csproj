@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\AlliesAndEnemiesDBControl.cs" />
+    <Compile Include="Database\DBModels\DBSkillsList.cs" />
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Armour.cs" />
     <Compile Include="Models\Character.cs" />

@@ -1,4 +1,5 @@
 ﻿using SWRPGCantina.Core.Generics;
+using SWRPGCantina.TheCantina.Database.DBModels;
 using SWRPGCantina.TheCantina.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,23 @@ namespace SWRPGCantina.TheCantina.Database
         {
             DBCon = generics.databaseLoc;
         }
-        public List<NPC> GetNPCs()
+
+        public List<NPC> GetAllNPCsAllDetails()
+        {
+            List<NPC> AllNpcs = new List<NPC>();
+
+            AllNpcs = GetListOfNPCs();
+
+            foreach (var NPC in AllNpcs)
+            {
+                DBSkillsList npcSkillList = GetNPCSkills(NPC.DBID);
+            }
+
+            return AllNpcs;
+        }
+
+
+        public List<NPC> GetListOfNPCs()
         {
             try
             {
@@ -78,7 +95,12 @@ namespace SWRPGCantina.TheCantina.Database
                 throw;
             }
         }
-        
+
+        private DBSkillsList GetNPCSkills(int npcID)
+        {
+
+        }
+
         public bool AddOrUpdateAdversary(NPC npc)
         {
             try

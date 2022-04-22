@@ -104,7 +104,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             _regionManager = regionManager;
 
             AlliesAndEnemiesDBControl dbConnection = new AlliesAndEnemiesDBControl();
-            AllNPCs = dbConnection.GetNPCs();
+            AllNPCs = dbConnection.GetListOfNPCs();
 
             FiltersEnabled = true;
             NPCTypeFilter = new List<string> { "None", "Neutrals", "Enemies", "Allies" };
