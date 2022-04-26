@@ -1,8 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using SWRPGCantina.TheCantina.Database;
-using SWRPGCantina.TheCantina.Models;
+using SWRPGCantina.Core.Database;
+using SWRPGCantina.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,6 +25,25 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             set { SetProperty(ref _filtersEnabled, value); }
         }
 
+        private List<string> _NPCAlignmentFilter;
+        public List<string> NPCAlignmentFilter
+        {
+            get { return _NPCAlignmentFilter; }
+            set { SetProperty(ref _NPCAlignmentFilter, value); }
+        }
+
+        private string _selectedAlignmentFilter;
+        public string SelectedAlignmentFilter
+        {
+            get { return _selectedAlignmentFilter; }
+            set
+            {
+                SetProperty(ref _selectedAlignmentFilter, value);
+                FilterNPCs();
+                CheckIfNeutral();
+            }
+        }
+
         private List<string> _NPCTypeFilter;
         public List<string> NPCTypeFilter
         {
@@ -40,7 +59,6 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             {
                 SetProperty(ref _selectedTypeFilter, value);
                 FilterNPCs();
-                CheckIfNeutral();
             }
         }
 
@@ -53,7 +71,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 
         private void CheckIfNeutral()
         {
-            if (SelectedTypeFilter == "Neutrals") { IsNeutrals = true; }
+            if (SelectedAlignmentFilter == "Neutrals") { IsNeutrals = true; }
             else { IsNeutrals = false; }
         }
 
@@ -107,13 +125,21 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             AllNPCs = dbConnection.GetListOfNPCs();
 
             FiltersEnabled = true;
-            NPCTypeFilter = new List<string> { "None", "Neutrals", "Enemies", "Allies" };
-            SelectedTypeFilter = "None";
+            SetFilterLists();
             ResetSearch();
 
             SelectNPCCommand = new DelegateCommand(SelectNPC, CanSelectNPC);
             NewNPCCommand = new DelegateCommand(CreateNewNPC);
             ResetSearchCommand = new DelegateCommand(ResetSearch);
+        }
+
+        private void SetFilterLists()
+        {
+            NPCAlignmentFilter = new List<string> { "All", "Neutrals", "Enemies", "Allies" };
+            SelectedAlignmentFilter = "All";
+
+            NPCTypeFilter = new List<string> { "All", "Nemeses", "Adversaries", "Minions" };
+            SelectedTypeFilter = "All";
         }
 
         private void ResetSearch()
@@ -163,14 +189,19 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 foreach (NPC npc in AllNPCs)
                 {
                     bool allowedToAdd = true;
-                    if (SelectedTypeFilter != "None")
+                    if (SelectedAlignmentFilter != "All")
                     {
-                        if (SelectedTypeFilter == "Enemies" && npc.NPCType != "Enemy") { allowedToAdd = false; }
-                        if (SelectedTypeFilter == "Neutrals" && npc.NPCType != "Neutral") { allowedToAdd = false; }
-                        if (SelectedTypeFilter == "Allies" && npc.NPCType != "Ally") { allowedToAdd = false; }
+                        if (SelectedAlignmentFilter == "Enemies" && npc.NPCAlignment != "Enemy") { allowedToAdd = false; }
+                        if (SelectedAlignmentFilter == "Neutrals" && npc.NPCAlignment != "Neutral") { allowedToAdd = false; }
+                        if (SelectedAlignmentFilter == "Allies" && npc.NPCAlignment != "Ally") { allowedToAdd = false; }
                     }
 
-
+                    if (SelectedTypeFilter != "All")
+                    {
+                        if (SelectedTypeFilter == "Nemeses" && npc.NPCAlignment != "Nemesis") { allowedToAdd = false; }
+                        if (SelectedTypeFilter == "Adversaries" && npc.NPCAlignment != "Adversary") { allowedToAdd = false; }
+                        if (SelectedTypeFilter == "Minions" && npc.NPCAlignment != "Minion") { allowedToAdd = false; }
+                    }
 
                     if (!string.IsNullOrEmpty(SearchFilter))
                     {

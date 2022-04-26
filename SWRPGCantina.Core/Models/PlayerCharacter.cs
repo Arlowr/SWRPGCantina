@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWRPGCantina.TheCantina.Models
+namespace SWRPGCantina.Core.Models
 {
     public class PlayerCharacter: Character
     {

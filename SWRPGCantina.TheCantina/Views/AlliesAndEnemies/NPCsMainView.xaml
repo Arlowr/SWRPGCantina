@@ -134,9 +134,17 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0" Grid.Column="0"
+                        Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                        <TextBlock Margin="5" FontSize="12" Text="Alignment Filter:"/>
+                        <ComboBox FontSize="12" MinHeight="30" MinWidth="100"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                 ItemsSource="{Binding NPCAlignmentFilter}" SelectedItem="{Binding SelectedAlignmentFilter}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0"
                         Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
                         <TextBlock Margin="5" FontSize="12" Text="Type Filter:"/>
                         <ComboBox FontSize="12" MinHeight="30" MinWidth="100"

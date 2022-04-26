@@ -19,6 +19,7 @@ namespace SWRPGCantina.TheCantina
             containerRegistry.RegisterForNavigation<SWHomeView>();
             containerRegistry.RegisterForNavigation<NPCsMainView>();
             containerRegistry.RegisterForNavigation<NPCCharacterMainView>();
+            containerRegistry.RegisterForNavigation<NPCSkillsView>();
         }
     }
 }

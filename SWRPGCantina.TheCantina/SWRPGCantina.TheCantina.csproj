@@ -74,17 +74,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\AlliesAndEnemiesDBControl.cs" />
-    <Compile Include="Database\DBModels\DBSkillsList.cs" />
-    <Compile Include="Models\Ability.cs" />
-    <Compile Include="Models\Armour.cs" />
-    <Compile Include="Models\Character.cs" />
-    <Compile Include="Models\Injury.cs" />
-    <Compile Include="Models\NPC.cs" />
-    <Compile Include="Models\PlayerCharacter.cs" />
-    <Compile Include="Models\Skill.cs" />
-    <Compile Include="Models\Talent.cs" />
-    <Compile Include="Models\Weapon.cs" />
     <Compile Include="TheCantinaModule.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCCharacterMainViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCSkillsViewModel.cs" />

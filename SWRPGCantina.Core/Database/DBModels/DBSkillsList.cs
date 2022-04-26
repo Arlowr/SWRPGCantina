@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWRPGCantina.TheCantina.Database.DBModels
+namespace SWRPGCantina.Core.Database.DBModels
 {
     public class DBSkillsList
     {
+        public int DBID { get; set; }
         public int ASTROGATION { get; set; }
         public int ATHLETICS { get; set; }
         public int CHARM { get; set; }
@@ -19,6 +20,7 @@ namespace SWRPGCantina.TheCantina.Database.DBModels
         public int DISCIPLINE { get; set; }
         public int LEADERSHIP { get; set; }
         public int MECHANICS { get; set; }
+        public int MEDICINE { get; set; }
         public int NEGOTIATION { get; set; }
         public int PERCEPTION { get; set; }
         public int PILOTINGPLANETARY { get; set; }
@@ -36,9 +38,10 @@ namespace SWRPGCantina.TheCantina.Database.DBModels
         public int RANGEDLIGHT { get; set; }
         public int RANGEDHEAVY { get; set; }
         public int COREWORLDLKNOW { get; set; }
-        public int ENDUCATIONKNOW { get; set; }
+        public int EDUCATIONKNOW { get; set; }
         public int LOREKNOW { get; set; }
         public int OUTERRIMKNOW { get; set; }
+        public int UNDERWORLDKNOW { get; set; }
         public int WARFAREKNOW { get; set; }
         public int XENOLOGYKNOW { get; set; }
     }
