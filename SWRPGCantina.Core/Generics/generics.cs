@@ -108,5 +108,11 @@ namespace SWRPGCantina.Core.Generics
 
             return Skills;
         }
+
+        public static List<string> LightsaberAttributes
+        {
+            get { return new List<string>() { "None", "Brawn", "Agility", "Intellect", "Cunning", "Willpower", "Presence" }; }
+        }
+
     }
 }

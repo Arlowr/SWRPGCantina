@@ -68,6 +68,7 @@ namespace SWRPGCantina.Core.Database
                         Name = o["AdversaryName"] != DBNull.Value ? o.Field<string>("AdversaryName") : "",
                         NPCType = o["NPCType"] != DBNull.Value ? o.Field<string>("NPCType") : "None",
                         NPCAlignment = o["NPCAlignment"] != DBNull.Value ? o.Field<string>("NPCAlignment") : "None",
+                        NPCAffiliation = o["NPCAffiliation"] != DBNull.Value ? o.Field<string>("NPCAffiliation") : "None",
                         CharacterDescription = o["NPCDescription"] != DBNull.Value ? o.Field<string>("NPCDescription") : "",
                         Species = o["Species"] != DBNull.Value ? o.Field<string>("Species") : "",
                         Gender = o["Gender"] != DBNull.Value ? o.Field<string>("Gender") : "",
@@ -91,7 +92,9 @@ namespace SWRPGCantina.Core.Database
                         DefenceMelee = o["DefenceMelee"] != DBNull.Value ? o.Field<int>("DefenceMelee") : 0,
                         DefenceRanged = o["DefenceRanged"] != DBNull.Value ? o.Field<int>("DefenceRanged") : 0,
                         ForcePoolCommited = o["ForcePoolCommited"] != DBNull.Value ? o.Field<int>("ForcePoolCommited") : 0,
-                        ForcePoolAvailable = o["ForcePoolAvailable"] != DBNull.Value ? o.Field<int>("ForcePoolAvailable") : 0
+                        ForcePoolAvailable = o["ForcePoolAvailable"] != DBNull.Value ? o.Field<int>("ForcePoolAvailable") : 0,
+                        ForcePoolMax = o["ForcePoolMax"] != DBNull.Value ? o.Field<int>("ForcePoolMax") : 0,
+                        LightsaberSkill = o["LightsaberSkill"] != DBNull.Value ? o.Field<string>("LightsaberSkill") : ""
                     });
 
                     conn.Close();
@@ -234,6 +237,7 @@ namespace SWRPGCantina.Core.Database
                     cmd.Parameters.Add("@AdversaryName", SqlDbType.VarChar).Value = npc.Name;
                     cmd.Parameters.Add("@NPCType", SqlDbType.VarChar).Value = npc.NPCType;
                     cmd.Parameters.Add("@NPCAlignment", SqlDbType.VarChar).Value = npc.NPCAlignment;
+                    cmd.Parameters.Add("@NPCAffiliation", SqlDbType.VarChar).Value = npc.NPCAffiliation;
                     cmd.Parameters.Add("@NPCDescription", SqlDbType.VarChar).Value = npc.CharacterDescription;
                     cmd.Parameters.Add("@Species", SqlDbType.VarChar).Value = npc.Species;
                     cmd.Parameters.Add("@Height", SqlDbType.Int).Value = npc.Height;
@@ -242,6 +246,7 @@ namespace SWRPGCantina.Core.Database
                     cmd.Parameters.Add("@Gender", SqlDbType.VarChar).Value = npc.Gender;
                     cmd.Parameters.Add("@Hair", SqlDbType.VarChar).Value = npc.HairColour;
                     cmd.Parameters.Add("@Age", SqlDbType.Int).Value = npc.Age;
+                    cmd.Parameters.Add("@LightsaberSkill", SqlDbType.VarChar).Value = npc.LightsaberSkill;
 
                     cmd.Parameters.Add("@Brawn", SqlDbType.Int).Value = npc.Brawn;
                     cmd.Parameters.Add("@Agility", SqlDbType.Int).Value = npc.Agility;
@@ -259,6 +264,7 @@ namespace SWRPGCantina.Core.Database
                     cmd.Parameters.Add("@DefenceMelee", SqlDbType.Int).Value = npc.DefenceMelee;
                     cmd.Parameters.Add("@ForcePoolCommited", SqlDbType.Int).Value = npc.ForcePoolCommited;
                     cmd.Parameters.Add("@ForcePoolAvailable", SqlDbType.Int).Value = npc.ForcePoolAvailable;
+                    cmd.Parameters.Add("@ForcePoolMax", SqlDbType.Int).Value = npc.ForcePoolMax;
                     //cmd.Parameters.Add("@ArmourId", SqlDbType.Int).Value = npc.ArmourId;
                     cmd.Parameters.Add("@Astrogation", SqlDbType.Int).Value = npc.Astrogation.Rank;
                     cmd.Parameters.Add("@Athletics", SqlDbType.Int).Value = npc.Athletics.Rank;

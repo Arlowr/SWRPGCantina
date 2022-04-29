@@ -43,10 +43,11 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<NPCUpdatedEvent>().Subscribe((NPC) =>
             {
-                if (this.NPC.DBID == NPC.DBID) 
-                {
-                    this.NPC = NPC; 
-                }
+                if (this.NPC.DBID == NPC.DBID)
+                    if (!NPC.Name.ToUpper().Contains("NEW"))
+                        this.NPC = NPC;
+                    else if (NPC.Name.ToUpper().Contains("NEW") && (this.NPC.Name == NPC.Name))
+                        this.NPC = NPC;
             });
 
             ChangeSkillRankCommand = new DelegateCommand<string>(ChangeSkillRank);
@@ -176,6 +177,71 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                     NPC.Vigilance.Rank += incdec;
                     NPC.Vigilance.Rank = Math.Max(0, NPC.Vigilance.Rank);
                     NPC.Vigilance.Rank = Math.Min(5, NPC.Vigilance.Rank);
+                    break;
+                case "Brawl":
+                    NPC.Brawl.Rank += incdec;
+                    NPC.Brawl.Rank = Math.Max(0, NPC.Brawl.Rank);
+                    NPC.Brawl.Rank = Math.Min(5, NPC.Brawl.Rank);
+                    break;
+                case "Gunnery":
+                    NPC.Gunnery.Rank += incdec;
+                    NPC.Gunnery.Rank = Math.Max(0, NPC.Gunnery.Rank);
+                    NPC.Gunnery.Rank = Math.Min(5, NPC.Gunnery.Rank);
+                    break;
+                case "Melee":
+                    NPC.Melee.Rank += incdec;
+                    NPC.Melee.Rank = Math.Max(0, NPC.Melee.Rank);
+                    NPC.Melee.Rank = Math.Min(5, NPC.Melee.Rank);
+                    break;
+                case "RangedL":
+                    NPC.RangedLight.Rank += incdec;
+                    NPC.RangedLight.Rank = Math.Max(0, NPC.RangedLight.Rank);
+                    NPC.RangedLight.Rank = Math.Min(5, NPC.RangedLight.Rank);
+                    break;
+                case "RangedH":
+                    NPC.RangedHeavy.Rank += incdec;
+                    NPC.RangedHeavy.Rank = Math.Max(0, NPC.RangedHeavy.Rank);
+                    NPC.RangedHeavy.Rank = Math.Min(5, NPC.RangedHeavy.Rank);
+                    break;
+                case "Lightsaber":
+                    NPC.Lightsaber.Rank += incdec;
+                    NPC.Lightsaber.Rank = Math.Max(0, NPC.Lightsaber.Rank);
+                    NPC.Lightsaber.Rank = Math.Min(5, NPC.Lightsaber.Rank);
+                    break;
+                case "CoreKnow":
+                    NPC.CoreWorldKnow.Rank += incdec;
+                    NPC.CoreWorldKnow.Rank = Math.Max(0, NPC.CoreWorldKnow.Rank);
+                    NPC.CoreWorldKnow.Rank = Math.Min(5, NPC.CoreWorldKnow.Rank);
+                    break;
+                case "EduKnow":
+                    NPC.EducationKnow.Rank += incdec;
+                    NPC.EducationKnow.Rank = Math.Max(0, NPC.EducationKnow.Rank);
+                    NPC.EducationKnow.Rank = Math.Min(5, NPC.EducationKnow.Rank);
+                    break;
+                case "LoreKnow":
+                    NPC.LoreKnow.Rank += incdec;
+                    NPC.LoreKnow.Rank = Math.Max(0, NPC.LoreKnow.Rank);
+                    NPC.LoreKnow.Rank = Math.Min(5, NPC.LoreKnow.Rank);
+                    break;
+                case "OuterKnow":
+                    NPC.OuterRimKnow.Rank += incdec;
+                    NPC.OuterRimKnow.Rank = Math.Max(0, NPC.OuterRimKnow.Rank);
+                    NPC.OuterRimKnow.Rank = Math.Min(5, NPC.OuterRimKnow.Rank);
+                    break;
+                case "UnderKnow":
+                    NPC.UnderworldKnow.Rank += incdec;
+                    NPC.UnderworldKnow.Rank = Math.Max(0, NPC.UnderworldKnow.Rank);
+                    NPC.UnderworldKnow.Rank = Math.Min(5, NPC.UnderworldKnow.Rank);
+                    break;
+                case "WarKnow":
+                    NPC.WarfareKnow.Rank += incdec;
+                    NPC.WarfareKnow.Rank = Math.Max(0, NPC.WarfareKnow.Rank);
+                    NPC.WarfareKnow.Rank = Math.Min(5, NPC.WarfareKnow.Rank);
+                    break;
+                case "XenoKnow":
+                    NPC.XenologyKnow.Rank += incdec;
+                    NPC.XenologyKnow.Rank = Math.Max(0, NPC.XenologyKnow.Rank);
+                    NPC.XenologyKnow.Rank = Math.Min(5, NPC.XenologyKnow.Rank);
                     break;
                 default:
                     break;
@@ -528,17 +594,236 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 if (NPC.Vigilance.Rank >= 1)
                 {
                     VigilProfVis = true;
-                    VigilAbilityDice = Math.Max(NPC.Brawn, NPC.Vigilance.Rank);
-                    VigilProfDice = Math.Min(NPC.Brawn, NPC.Vigilance.Rank);
+                    VigilAbilityDice = Math.Max(NPC.Willpower, NPC.Vigilance.Rank);
+                    VigilProfDice = Math.Min(NPC.Willpower, NPC.Vigilance.Rank);
                 }
                 else
                 {
                     VigilProfVis = false;
-                    VigilAbilityDice = NPC.Brawn;
+                    VigilAbilityDice = NPC.Willpower;
                     VigilProfDice = 1;
                 }
             }
-
+            if (skill == "Brawl" || skill == "All")
+            {
+                if (NPC.Brawl.Rank >= 1)
+                {
+                    BrawlProfVis = true;
+                    BrawlAbilityDice = Math.Max(NPC.Brawn, NPC.Brawl.Rank);
+                    BrawlProfDice = Math.Min(NPC.Brawn, NPC.Brawl.Rank);
+                }
+                else
+                {
+                    BrawlProfVis = false;
+                    BrawlAbilityDice = NPC.Brawn;
+                    BrawlProfDice = 1;
+                }
+            }
+            if (skill == "Gunnery" || skill == "All")
+            {
+                if (NPC.Gunnery.Rank >= 1)
+                {
+                    GunneryProfVis = true;
+                    GunneryAbilityDice = Math.Max(NPC.Agility, NPC.Gunnery.Rank);
+                    GunneryProfDice = Math.Min(NPC.Agility, NPC.Gunnery.Rank);
+                }
+                else
+                {
+                    GunneryProfVis = false;
+                    GunneryAbilityDice = NPC.Agility;
+                    GunneryProfDice = 1;
+                }
+            }
+            if (skill == "Melee" || skill == "All")
+            {
+                if (NPC.Melee.Rank >= 1)
+                {
+                    MeleeProfVis = true;
+                    MeleeAbilityDice = Math.Max(NPC.Brawn, NPC.Melee.Rank);
+                    MeleeProfDice = Math.Min(NPC.Brawn, NPC.Melee.Rank);
+                }
+                else
+                {
+                    MeleeProfVis = false;
+                    MeleeAbilityDice = NPC.Brawn;
+                    MeleeProfDice = 1;
+                }
+            }
+            if (skill == "RangedL" || skill == "All")
+            {
+                if (NPC.RangedLight.Rank >= 1)
+                {
+                    RangedLProfVis = true;
+                    RangedLAbilityDice = Math.Max(NPC.Agility, NPC.RangedLight.Rank);
+                    RangedLProfDice = Math.Min(NPC.Agility, NPC.RangedLight.Rank);
+                }
+                else
+                {
+                    RangedLProfVis = false;
+                    RangedLAbilityDice = NPC.Agility;
+                    RangedLProfDice = 1;
+                }
+            }
+            if (skill == "RangedH" || skill == "All")
+            {
+                if (NPC.RangedHeavy.Rank >= 1)
+                {
+                    RangedHProfVis = true;
+                    RangedHAbilityDice = Math.Max(NPC.Agility, NPC.RangedHeavy.Rank);
+                    RangedHProfDice = Math.Min(NPC.Agility, NPC.RangedHeavy.Rank);
+                }
+                else
+                {
+                    RangedHProfVis = false;
+                    RangedHAbilityDice = NPC.Agility;
+                    RangedHProfDice = 1;
+                }
+            }
+            if (skill == "Lightsaber" || skill == "All")
+            {
+                var LightsaberAttributeRank = 1;
+                switch (NPC.LightsaberSkill)
+                {
+                    case "Brawn":
+                        LightsaberAttributeRank = NPC.Brawn;
+                        break;
+                    case "Agility":
+                        LightsaberAttributeRank = NPC.Agility;
+                        break;
+                    case "Intellect":
+                        LightsaberAttributeRank = NPC.Intellect;
+                        break;
+                    case "Cunning":
+                        LightsaberAttributeRank = NPC.Cunning;
+                        break;
+                    case "Willpower":
+                        LightsaberAttributeRank = NPC.Willpower;
+                        break;
+                    case "Presence":
+                        LightsaberAttributeRank = NPC.Presence;
+                        break;
+                    default:
+                        LightsaberAttributeRank = NPC.Brawn;
+                        break;
+                }
+                if (NPC.Lightsaber.Rank >= 1)
+                {
+                    LightsaberProfVis = true;
+                    LightsaberAbilityDice = Math.Max(LightsaberAttributeRank, NPC.Lightsaber.Rank);
+                    LightsaberProfDice = Math.Min(LightsaberAttributeRank, NPC.Lightsaber.Rank);
+                }
+                else
+                {
+                    LightsaberProfVis = false;
+                    LightsaberAbilityDice = LightsaberAttributeRank;
+                    LightsaberProfDice = 1;
+                }
+            }
+            if (skill == "CoreKnow" || skill == "All")
+            {
+                if (NPC.CoreWorldKnow.Rank >= 1)
+                {
+                    CoreKnowProfVis = true;
+                    CoreKnowAbilityDice = Math.Max(NPC.Intellect, NPC.CoreWorldKnow.Rank);
+                    CoreKnowProfDice = Math.Min(NPC.Intellect, NPC.CoreWorldKnow.Rank);
+                }
+                else
+                {
+                    CoreKnowProfVis = false;
+                    CoreKnowAbilityDice = NPC.Intellect;
+                    CoreKnowProfDice = 1;
+                }
+            }
+            if (skill == "EduKnow" || skill == "All")
+            {
+                if (NPC.EducationKnow.Rank >= 1)
+                {
+                    EduKnowProfVis = true;
+                    EduKnowAbilityDice = Math.Max(NPC.Intellect, NPC.EducationKnow.Rank);
+                    EduKnowProfDice = Math.Min(NPC.Intellect, NPC.EducationKnow.Rank);
+                }
+                else
+                {
+                    EduKnowProfVis = false;
+                    EduKnowAbilityDice = NPC.Intellect;
+                    EduKnowProfDice = 1;
+                }
+            }
+            if (skill == "LoreKnow" || skill == "All")
+            {
+                if (NPC.LoreKnow.Rank >= 1)
+                {
+                    LoreKnowProfVis = true;
+                    LoreKnowAbilityDice = Math.Max(NPC.Intellect, NPC.LoreKnow.Rank);
+                    LoreKnowProfDice = Math.Min(NPC.Intellect, NPC.LoreKnow.Rank);
+                }
+                else
+                {
+                    LoreKnowProfVis = false;
+                    LoreKnowAbilityDice = NPC.Intellect;
+                    LoreKnowProfDice = 1;
+                }
+            }
+            if (skill == "OuterKnow" || skill == "All")
+            {
+                if (NPC.OuterRimKnow.Rank >= 1)
+                {
+                    OuterKnowProfVis = true;
+                    OuterKnowAbilityDice = Math.Max(NPC.Intellect, NPC.OuterRimKnow.Rank);
+                    OuterKnowProfDice = Math.Min(NPC.Intellect, NPC.OuterRimKnow.Rank);
+                }
+                else
+                {
+                    OuterKnowProfVis = false;
+                    OuterKnowAbilityDice = NPC.Intellect;
+                    OuterKnowProfDice = 1;
+                }
+            }
+            if (skill == "UnderKnow" || skill == "All")
+            {
+                if (NPC.UnderworldKnow.Rank >= 1)
+                {
+                    UnderKnowProfVis = true;
+                    UnderKnowAbilityDice = Math.Max(NPC.Intellect, NPC.UnderworldKnow.Rank);
+                    UnderKnowProfDice = Math.Min(NPC.Intellect, NPC.UnderworldKnow.Rank);
+                }
+                else
+                {
+                    UnderKnowProfVis = false;
+                    UnderKnowAbilityDice = NPC.Intellect;
+                    UnderKnowProfDice = 1;
+                }
+            }
+            if (skill == "WarKnow" || skill == "All")
+            {
+                if (NPC.WarfareKnow.Rank >= 1)
+                {
+                    WarKnowProfVis = true;
+                    WarKnowAbilityDice = Math.Max(NPC.Intellect, NPC.WarfareKnow.Rank);
+                    WarKnowProfDice = Math.Min(NPC.Intellect, NPC.WarfareKnow.Rank);
+                }
+                else
+                {
+                    WarKnowProfVis = false;
+                    WarKnowAbilityDice = NPC.Intellect;
+                    WarKnowProfDice = 1;
+                }
+            }
+            if (skill == "XenoKnow" || skill == "All")
+            {
+                if (NPC.XenologyKnow.Rank >= 1)
+                {
+                    XenoKnowProfVis = true;
+                    XenoKnowAbilityDice = Math.Max(NPC.Intellect, NPC.XenologyKnow.Rank);
+                    XenoKnowProfDice = Math.Min(NPC.Intellect, NPC.XenologyKnow.Rank);
+                }
+                else
+                {
+                    XenoKnowProfVis = false;
+                    XenoKnowAbilityDice = NPC.Intellect;
+                    XenoKnowProfDice = 1;
+                }
+            }
         }
 
         private int _astroAbilityDice;
@@ -978,6 +1263,266 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
         {
             get { return _vigilProfVis; }
             set { SetProperty(ref _vigilProfVis, value); }
+        }
+
+
+        private int _brawlAbilityDice;
+        public int BrawlAbilityDice
+        {
+            get { return _brawlAbilityDice; }
+            set { SetProperty(ref _brawlAbilityDice, value); }
+        }
+        private int _brawlProfDice;
+        public int BrawlProfDice
+        {
+            get { return _brawlProfDice; }
+            set { SetProperty(ref _brawlProfDice, value); }
+        }
+        private bool _brawlProfVis;
+        public bool BrawlProfVis
+        {
+            get { return _brawlProfVis; }
+            set { SetProperty(ref _brawlProfVis, value); }
+        }
+
+
+        private int _gunneryAbilityDice;
+        public int GunneryAbilityDice
+        {
+            get { return _gunneryAbilityDice; }
+            set { SetProperty(ref _gunneryAbilityDice, value); }
+        }
+        private int _gunneryProfDice;
+        public int GunneryProfDice
+        {
+            get { return _gunneryProfDice; }
+            set { SetProperty(ref _gunneryProfDice, value); }
+        }
+        private bool _gunneryProfVis;
+        public bool GunneryProfVis
+        {
+            get { return _gunneryProfVis; }
+            set { SetProperty(ref _gunneryProfVis, value); }
+        }
+
+
+        private int _meleeAbilityDice;
+        public int MeleeAbilityDice
+        {
+            get { return _meleeAbilityDice; }
+            set { SetProperty(ref _meleeAbilityDice, value); }
+        }
+        private int _meleeProfDice;
+        public int MeleeProfDice
+        {
+            get { return _meleeProfDice; }
+            set { SetProperty(ref _meleeProfDice, value); }
+        }
+        private bool _meleeProfVis;
+        public bool MeleeProfVis
+        {
+            get { return _meleeProfVis; }
+            set { SetProperty(ref _meleeProfVis, value); }
+        }
+
+
+        private int _rangedLAbilityDice;
+        public int RangedLAbilityDice
+        {
+            get { return _rangedLAbilityDice; }
+            set { SetProperty(ref _rangedLAbilityDice, value); }
+        }
+        private int _rangedLProfDice;
+        public int RangedLProfDice
+        {
+            get { return _rangedLProfDice; }
+            set { SetProperty(ref _rangedLProfDice, value); }
+        }
+        private bool _rangedLProfVis;
+        public bool RangedLProfVis
+        {
+            get { return _rangedLProfVis; }
+            set { SetProperty(ref _rangedLProfVis, value); }
+        }
+
+
+        private int _rangedHAbilityDice;
+        public int RangedHAbilityDice
+        {
+            get { return _rangedHAbilityDice; }
+            set { SetProperty(ref _rangedHAbilityDice, value); }
+        }
+        private int _rangedHProfDice;
+        public int RangedHProfDice
+        {
+            get { return _rangedHProfDice; }
+            set { SetProperty(ref _rangedHProfDice, value); }
+        }
+        private bool _rangedHProfVis;
+        public bool RangedHProfVis
+        {
+            get { return _rangedHProfVis; }
+            set { SetProperty(ref _rangedHProfVis, value); }
+        }
+
+
+        private int _lightsaberAbilityDice;
+        public int LightsaberAbilityDice
+        {
+            get { return _lightsaberAbilityDice; }
+            set { SetProperty(ref _lightsaberAbilityDice, value); }
+        }
+        private int _lightsaberProfDice;
+        public int LightsaberProfDice
+        {
+            get { return _lightsaberProfDice; }
+            set { SetProperty(ref _lightsaberProfDice, value); }
+        }
+        private bool _lightsaberProfVis;
+        public bool LightsaberProfVis
+        {
+            get { return _lightsaberProfVis; }
+            set { SetProperty(ref _lightsaberProfVis, value); }
+        }
+
+
+        private int _coreKnowAbilityDice;
+        public int CoreKnowAbilityDice
+        {
+            get { return _coreKnowAbilityDice; }
+            set { SetProperty(ref _coreKnowAbilityDice, value); }
+        }
+        private int _coreKnowProfDice;
+        public int CoreKnowProfDice
+        {
+            get { return _coreKnowProfDice; }
+            set { SetProperty(ref _coreKnowProfDice, value); }
+        }
+        private bool _coreKnowProfVis;
+        public bool CoreKnowProfVis
+        {
+            get { return _coreKnowProfVis; }
+            set { SetProperty(ref _coreKnowProfVis, value); }
+        }
+
+
+        private int _eduKnowAbilityDice;
+        public int EduKnowAbilityDice
+        {
+            get { return _eduKnowAbilityDice; }
+            set { SetProperty(ref _eduKnowAbilityDice, value); }
+        }
+        private int _eduKnowProfDice;
+        public int EduKnowProfDice
+        {
+            get { return _eduKnowProfDice; }
+            set { SetProperty(ref _eduKnowProfDice, value); }
+        }
+        private bool _eduKnowProfVis;
+        public bool EduKnowProfVis
+        {
+            get { return _eduKnowProfVis; }
+            set { SetProperty(ref _eduKnowProfVis, value); }
+        }
+
+
+        private int _loreKnowAbilityDice;
+        public int LoreKnowAbilityDice
+        {
+            get { return _loreKnowAbilityDice; }
+            set { SetProperty(ref _loreKnowAbilityDice, value); }
+        }
+        private int _loreKnowProfDice;
+        public int LoreKnowProfDice
+        {
+            get { return _loreKnowProfDice; }
+            set { SetProperty(ref _loreKnowProfDice, value); }
+        }
+        private bool _loreKnowProfVis;
+        public bool LoreKnowProfVis
+        {
+            get { return _loreKnowProfVis; }
+            set { SetProperty(ref _loreKnowProfVis, value); }
+        }
+
+
+        private int _outerKnowAbilityDice;
+        public int OuterKnowAbilityDice
+        {
+            get { return _outerKnowAbilityDice; }
+            set { SetProperty(ref _outerKnowAbilityDice, value); }
+        }
+        private int _outerKnowProfDice;
+        public int OuterKnowProfDice
+        {
+            get { return _outerKnowProfDice; }
+            set { SetProperty(ref _outerKnowProfDice, value); }
+        }
+        private bool _outerKnowProfVis;
+        public bool OuterKnowProfVis
+        {
+            get { return _outerKnowProfVis; }
+            set { SetProperty(ref _outerKnowProfVis, value); }
+        }
+
+
+        private int _underKnowAbilityDice;
+        public int UnderKnowAbilityDice
+        {
+            get { return _underKnowAbilityDice; }
+            set { SetProperty(ref _underKnowAbilityDice, value); }
+        }
+        private int _underKnowProfDice;
+        public int UnderKnowProfDice
+        {
+            get { return _underKnowProfDice; }
+            set { SetProperty(ref _underKnowProfDice, value); }
+        }
+        private bool _underKnowProfVis;
+        public bool UnderKnowProfVis
+        {
+            get { return _underKnowProfVis; }
+            set { SetProperty(ref _underKnowProfVis, value); }
+        }
+
+
+        private int _warKnowAbilityDice;
+        public int WarKnowAbilityDice
+        {
+            get { return _warKnowAbilityDice; }
+            set { SetProperty(ref _warKnowAbilityDice, value); }
+        }
+        private int _warKnowProfDice;
+        public int WarKnowProfDice
+        {
+            get { return _warKnowProfDice; }
+            set { SetProperty(ref _warKnowProfDice, value); }
+        }
+        private bool _warKnowProfVis;
+        public bool WarKnowProfVis
+        {
+            get { return _warKnowProfVis; }
+            set { SetProperty(ref _warKnowProfVis, value); }
+        }
+
+
+        private int _xenoKnowAbilityDice;
+        public int XenoKnowAbilityDice
+        {
+            get { return _xenoKnowAbilityDice; }
+            set { SetProperty(ref _xenoKnowAbilityDice, value); }
+        }
+        private int _xenoKnowProfDice;
+        public int XenoKnowProfDice
+        {
+            get { return _xenoKnowProfDice; }
+            set { SetProperty(ref _xenoKnowProfDice, value); }
+        }
+        private bool _xenoKnowProfVis;
+        public bool XenoKnowProfVis
+        {
+            get { return _xenoKnowProfVis; }
+            set { SetProperty(ref _xenoKnowProfVis, value); }
         }
 
 

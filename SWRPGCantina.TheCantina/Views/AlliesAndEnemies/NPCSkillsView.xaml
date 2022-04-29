@@ -1290,7 +1290,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="Survival" Grid.Column="2" Grid.Row="3">
+        <Grid x:Name="Survival" Grid.Column="3" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="4*"/>
@@ -1350,7 +1350,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="Vigilance" Grid.Column="2" Grid.Row="4">
+        <Grid x:Name="Vigilance" Grid.Column="3" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="4*"/>
@@ -1399,6 +1399,786 @@
                 <Border Grid.Column="0" Grid.ColumnSpan="{Binding VigilAbilityDice, UpdateSourceTrigger=PropertyChanged}"
                         Height="20" Background="Green"/>
                 <Border Grid.Column="0" Grid.ColumnSpan="{Binding VigilProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding VigilProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Brawl" Grid.Column="2" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Brawl:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="BrawlLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.Brawl.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="BrawlRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding BrawlAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding BrawlProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding BrawlProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Gunnery" Grid.Column="2" Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Gunnery:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="GunneryLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.Gunnery.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="GunneryRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding GunneryAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding GunneryProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding GunneryProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Melee" Grid.Column="2" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Melee:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="MeleeLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.Melee.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="MeleeRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding MeleeAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding MeleeProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding MeleeProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="RangedL" Grid.Column="2" Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="RangedL:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="RangedLLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.RangedLight.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="RangedLRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding RangedLAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding RangedLProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding RangedLProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="RangedH" Grid.Column="2" Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="RangedH:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="RangedHLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.RangedHeavy.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="RangedHRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding RangedHAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding RangedHProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding RangedHProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Lightsaber" Grid.Column="2" Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Lightsaber:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="LightsaberLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.Lightsaber.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="LightsaberRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding LightsaberAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding LightsaberProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding LightsaberProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="CoreWorldKnow" Grid.Column="3" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Core World:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="CoreKnowLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.CoreWorldKnow.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="CoreKnowRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding CoreKnowAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding CoreKnowProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding CoreKnowProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="EducationKnow" Grid.Column="3" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Education:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="EduKnowLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.EducationKnow.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="EduKnowRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding EduKnowAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding EduKnowProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding EduKnowProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="LoreKnow" Grid.Column="3" Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Lore:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="LoreKnowLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.LoreKnow.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="LoreKnowRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding LoreKnowAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding LoreKnowProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding LoreKnowProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="OuterRimKnow" Grid.Column="3" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Outer Rim:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="OuterKnowLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.OuterRimKnow.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="OuterKnowRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding OuterKnowAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding OuterKnowProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding OuterKnowProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="UnderworldKnow" Grid.Column="3" Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Underworld:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="UnderKnowLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.UnderworldKnow.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="UnderKnowRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding UnderKnowAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding UnderKnowProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding UnderKnowProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="WarfareKnow" Grid.Column="3" Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Warfare:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="WarKnowLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.WarfareKnow.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="WarKnowRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding WarKnowAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding WarKnowProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding WarKnowProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Yellow"/>
+
+                <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="1" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="2" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="3" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="4" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+                <Border Grid.Column="5" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="XenologyKnow" Grid.Column="3" Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                       FontSize="16"  Text="Xenology:"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="XenoKnowLower">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&lt;"/>
+                </Button>
+
+                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Foreground="#FFE81F"
+                            FontSize="20" Text="{Binding NPC.XenologyKnow.Rank, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                    Margin="5" Padding="5" MaxWidth="100"
+                    Command="{Binding ChangeSkillRankCommand}" CommandParameter="XenoKnowRaise">
+                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                           Text="&gt;"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding XenoKnowAbilityDice, UpdateSourceTrigger=PropertyChanged}"
+                        Height="20" Background="Green"/>
+                <Border Grid.Column="0" Grid.ColumnSpan="{Binding XenoKnowProfDice, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding XenoKnowProfVis, Converter={StaticResource VisConverter}, UpdateSourceTrigger=PropertyChanged}"
                         Height="20" Background="Yellow"/>
 
                 <Border Grid.Column="0" BorderThickness="1" Margin="0,5" BorderBrush="Black"/>

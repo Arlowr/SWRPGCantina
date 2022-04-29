@@ -51,11 +51,11 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" MinWidth="150"/>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="Auto" MinWidth="160"/>
+            <ColumnDefinition Width="Auto" MinWidth="1440"/>
         </Grid.ColumnDefinitions>
 
-        <Grid>
+        <Grid HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="6*"/>
@@ -70,13 +70,13 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
                             <TextBlock Margin="5" FontSize="12" Text="Search NPCs:"/>
-                            <TextBox FontSize="12" MinHeight="30" MinWidth="180"
+                            <TextBox FontSize="12" MinHeight="30" MinWidth="160"
                          HorizontalAlignment="Center" VerticalAlignment="Center"
                          Text="{Binding SearchFilter, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                         <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                         Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
-                        Margin="5" Padding="5" MinWidth="100"
+                        Margin="2" Padding="2" MinWidth="80" Width="100"
                         Command="{Binding ResetSearchCommand}">
                             <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
                                Text="Reset Search"/>
@@ -163,7 +163,9 @@
                 </Button>
             </Grid>
         </Grid>
-        <TabControl Grid.Column="1"  BorderBrush="SandyBrown" Background="Transparent"
+        <Grid Grid.Column="1">
+            <TabControl BorderBrush="SandyBrown" Background="Transparent"
                         prism:RegionManager.RegionName="NPCWindow"/>
+        </Grid>
     </Grid>
 </UserControl>

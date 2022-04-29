@@ -34,6 +34,8 @@ namespace SWRPGCantina.Core.Models
         public int DefenceRanged { get; set; }
         public int ForcePoolCommited { get; set; }
         public int ForcePoolAvailable { get; set; }
+        public int ForcePoolMax { get; set; }
+        public string LightsaberSkill { get; set; }
         public List<Armour> Armour { get; set; }
         public List<Weapon> Weapons { get; set; }
 

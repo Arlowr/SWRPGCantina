@@ -212,9 +212,10 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             _eventAggregator.GetEvent<NPCUpdatedEvent>().Subscribe((NPC) =>
             {
                 if (this.NPC.DBID == NPC.DBID)
-                {
-                    this.NPC = NPC;
-                }
+                    if (!NPC.Name.ToUpper().Contains("NEW"))
+                        this.NPC = NPC;
+                    else if (NPC.Name.ToUpper().Contains("NEW") && (TabTitle == NPC.Name))
+                        this.NPC = NPC;
             });
 
             UpdateCommand = new DelegateCommand(UpdateNPC, CanUpdateNPC);
@@ -222,7 +223,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 
 
             NPCAlignments = new List<string>{ "None", "Neutral", "Enemy", "Ally" };
-            NPCTypes = new List<string>{ "Nemesis", "Adversary" };
+            NPCTypes = new List<string>{ "Nemesis", "Rival" };
             UpdatedNPC = false; UpdateNPCSucess = false;
         }
 
@@ -260,7 +261,11 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             AlliesAndEnemiesDBControl dbConnection = new AlliesAndEnemiesDBControl();
             UpdateNPCSucess = dbConnection.AddOrUpdateAdversary(NPC);
 
+            TabTitle = NPC.Name;
+
             UpdatedNPC = true;
+
+            _eventAggregator.GetEvent<NPCDBUpdatedEvent>().Publish();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -269,19 +274,56 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             {
                 NPC = navigationContext.Parameters.GetValue<NPC>("NPC");
                 AlliesAndEnemiesDBControl dbControl = new AlliesAndEnemiesDBControl();
-                dbControl.GetDetailsForNPC(NPC);
-            }
-
-            if (NPC != null)
-            {
                 TabTitle = NPC.Name;
                 NPCDetailsWindowName = NPC.Name.Replace(" ", "") + "DetailsWindow";
+
+                if (!NPC.Name.Contains("New"))
+                    dbControl.GetDetailsForNPC(NPC);
+                else
+                {
+                    SetUpNPCSkills();
+                }
             }
-            else
-            {
-                TabTitle = "New";
-                NPCDetailsWindowName = "NewNPCDetailsWindow";
-            }
+
+        }
+
+        private void SetUpNPCSkills()
+        {
+            NPC.Astrogation = new Skill { Name = "Astrogation", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Athletics = new Skill { Name = "Athletics", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Charm = new Skill { Name = "Charm", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Coercion = new Skill { Name = "Coercion", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Computers = new Skill { Name = "Computers", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Cool = new Skill { Name = "Cool", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Coordination = new Skill { Name = "Coordination", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Deception = new Skill { Name = "Deception", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Discipline = new Skill { Name = "Discipline", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Leadership = new Skill { Name = "Leadership", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Mechanics = new Skill { Name = "Mechanics", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Medicine = new Skill { Name = "Medicine", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Negotiation = new Skill { Name = "Negotiation", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Perception = new Skill { Name = "Perception", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.PilotingPlanetary = new Skill { Name = "PilotingPlanetary", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.PilotingSpace = new Skill { Name = "PilotingSpace", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Resilience = new Skill { Name = "Resilience", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Skullduggery = new Skill { Name = "Skullduggery", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Stealth = new Skill { Name = "Stealth", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Streetwise = new Skill { Name = "Streetwise", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Survival = new Skill { Name = "Survival", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Vigilance = new Skill { Name = "Vigilance", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = false, Career = false };
+            NPC.Brawl = new Skill { Name = "Brawl", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = true, Career = false };
+            NPC.Gunnery = new Skill { Name = "Gunnery", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = true, Career = false };
+            NPC.Lightsaber = new Skill { Name = "Lightsaber", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = true, Career = false };
+            NPC.Melee = new Skill { Name = "Melee", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = true, Career = false };
+            NPC.RangedLight = new Skill { Name = "RangedLight", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = true, Career = false };
+            NPC.RangedHeavy = new Skill { Name = "RangedHeavy", Rank = 0, IsKnowledgeSkill = false, IsWeaponSkill = true, Career = false };
+            NPC.CoreWorldKnow = new Skill { Name = "CoreWorldKnow", Rank = 0, IsKnowledgeSkill = true, IsWeaponSkill = false, Career = false };
+            NPC.EducationKnow = new Skill { Name = "EducationKnow", Rank = 0, IsKnowledgeSkill = true, IsWeaponSkill = false, Career = false };
+            NPC.LoreKnow = new Skill { Name = "LoreKnow", Rank = 0, IsKnowledgeSkill = true, IsWeaponSkill = false, Career = false };
+            NPC.OuterRimKnow = new Skill { Name = "OuterRimKnow", Rank = 0, IsKnowledgeSkill = true, IsWeaponSkill = false, Career = false };
+            NPC.UnderworldKnow = new Skill { Name = "UnderworldKnow", Rank = 0, IsKnowledgeSkill = true, IsWeaponSkill = false, Career = false };
+            NPC.WarfareKnow = new Skill { Name = "WarfareKnow", Rank = 0, IsKnowledgeSkill = true, IsWeaponSkill = false, Career = false };
+            NPC.XenologyKnow = new Skill { Name = "XenologyKnow", Rank = 0, IsKnowledgeSkill = true, IsWeaponSkill = false, Career = false };
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

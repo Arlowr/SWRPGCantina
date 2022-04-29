@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using SWRPGCantina.Core.Database;
@@ -9,12 +10,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SWRPGCantina.Core.Models.NPC;
 
 namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 {
     public class NPCsMainViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
+        protected readonly IEventAggregator _eventAggregator;
 
         #region Filters
 
@@ -102,6 +105,13 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             }
         }
 
+        private List<string> _openNPCs;
+        public List<string> OpenNPCs
+        {
+            get { return _openNPCs; }
+            set { SetProperty(ref _openNPCs, value); }
+        }
+
         private string _searchFilter;
         public string SearchFilter
         {
@@ -117,7 +127,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
         public DelegateCommand ResetSearchCommand { get; private set; }
         public DelegateCommand NewNPCCommand { get; private set; }
 
-        public NPCsMainViewModel(IRegionManager regionManager)
+        public NPCsMainViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             _regionManager = regionManager;
 
@@ -131,6 +141,36 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             SelectNPCCommand = new DelegateCommand(SelectNPC, CanSelectNPC);
             NewNPCCommand = new DelegateCommand(CreateNewNPC);
             ResetSearchCommand = new DelegateCommand(ResetSearch);
+
+            OpenNPCs = new List<string>();
+
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<NPCDBUpdatedEvent>().Subscribe(DBUpdated);
+        }
+
+        private void DBUpdated()
+        {
+            AlliesAndEnemiesDBControl dbConnection = new AlliesAndEnemiesDBControl();
+
+            if (SelectedNPC != null)
+            {
+                var tempSelected = SelectedNPC;
+
+                SelectedNPC = null;
+
+                AllNPCs = new List<NPC>();
+                AllNPCs = dbConnection.GetListOfNPCs();
+
+                if (!string.IsNullOrEmpty(AllNPCs.FirstOrDefault(x => x.Name == tempSelected.Name).Name))
+                {
+                    SelectedNPC = tempSelected;
+                }
+            } else
+            {
+                AllNPCs = new List<NPC>();
+                AllNPCs = dbConnection.GetListOfNPCs();
+            }
+            FilterNPCs();
         }
 
         private void SetFilterLists()
@@ -172,10 +212,23 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 navParams.Add("NPC", SelectedNPC);
 
                 _regionManager.RequestNavigate("NPCWindow", "NPCCharacterMainView", navParams);
+
+                OpenNPCs.Add(SelectedNPC.Name);
             }
             else if (type == "New")
             {
-                _regionManager.RequestNavigate("NPCWindow", "NPCCharacterMainView");
+                var newNPCs = OpenNPCs.Count(x => x.Contains("NewNPC"));
+                var numToAdd = "";
+                if (newNPCs + 1 > 1)
+                    numToAdd = (newNPCs + 1).ToString();
+                var newNPC = new NPC();
+                newNPC.Name = "NewNPC" + numToAdd;
+
+                var navParams = new NavigationParameters();
+                navParams.Add("NPC", newNPC);
+
+                _regionManager.RequestNavigate("NPCWindow", "NPCCharacterMainView", navParams);
+                OpenNPCs.Add(newNPC.Name);
             }
         }
 
