@@ -270,7 +270,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
              
         }
 
-        #region Dice Booleans
+        #region Dice Settings
 
         private void SetDice(string skill)
         {

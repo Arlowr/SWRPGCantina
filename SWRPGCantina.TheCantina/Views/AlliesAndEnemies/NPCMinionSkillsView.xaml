@@ -1,0 +1,439 @@
+﻿<UserControl x:Class="SWRPGCantina.TheCantina.Views.AlliesAndEnemies.NPCMinionSkillsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"         
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"     
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:conv="clr-namespace:MyWPFCommonConverters;assembly=MyWPFCommonConverters"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1450"
+             MaxWidth="1450">
+    <UserControl.Resources>
+        <DataTemplate x:Key="GreenDice">
+            <Polygon Points="-8,8 0,-8 8,8" 
+                Fill="Green" />
+        </DataTemplate>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="MinionSkills" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="Astrogation" Grid.Column="0" Grid.Row="0"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Astrogation:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Astrogation}"/>
+            </Grid>
+            <Grid x:Name="Athletics" Grid.Column="0" Grid.Row="1"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Athletics:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Athletics}"/>
+            </Grid>
+            <Grid x:Name="Charm" Grid.Column="0" Grid.Row="2"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Charm:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Charm}"/>
+            </Grid>
+            <Grid x:Name="Coercion" Grid.Column="0" Grid.Row="3"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Coercion:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Coercion}"/>
+            </Grid>
+            <Grid x:Name="Computers" Grid.Column="0" Grid.Row="4"
+               HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Computers:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Computers}"/>
+            </Grid>
+            <Grid x:Name="Cool" Grid.Column="0" Grid.Row="5"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Cool:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Cool}"/>
+            </Grid>
+            <Grid x:Name="Coordination" Grid.Column="0" Grid.Row="6"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Coordination:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Coordination}"/>
+            </Grid>
+            <Grid x:Name="Deception" Grid.Column="0" Grid.Row="7"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Deception:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Deception}"/>
+            </Grid>
+            <Grid x:Name="Discipline" Grid.Column="0" Grid.Row="8"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Discipline:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Discipline}"/>
+            </Grid>
+
+            <Grid x:Name="Leadership" Grid.Column="1" Grid.Row="0"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Leadership:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Leadership}"/>
+            </Grid>
+            <Grid x:Name="Mechanics" Grid.Column="1" Grid.Row="1"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Mechanics:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Mechanics}"/>
+            </Grid>
+            <Grid x:Name="Medicine" Grid.Column="1" Grid.Row="2"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5"
+                       FontSize="16"  Text="Medicine:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Medicine}"/>
+            </Grid>
+            <Grid x:Name="Negotiation" Grid.Column="1" Grid.Row="3"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Negotiation:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Negotiation}"/>
+            </Grid>
+            <Grid x:Name="Perception" Grid.Column="1" Grid.Row="4"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Perception:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Perception}"/>
+            </Grid>
+            <Grid x:Name="PilotingP" Grid.Column="1" Grid.Row="5"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Piloting Planetary:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding PilotingP}"/>
+            </Grid>
+            <Grid x:Name="PilotingS" Grid.Column="1" Grid.Row="6"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Piloting Space:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding PilotingS}"/>
+            </Grid>
+            <Grid x:Name="Resilience" Grid.Column="1" Grid.Row="7"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Resilience:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Resilience}"/>
+            </Grid>
+            <Grid x:Name="Skullduggery" Grid.Column="1" Grid.Row="8"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Skullduggery:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Skullduggery}"/>
+            </Grid>
+
+            <Grid x:Name="Stealth" Grid.Column="2" Grid.Row="0"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Stealth:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Stealth}"/>
+            </Grid>
+            <Grid  x:Name="Streetwise" Grid.Column="2" Grid.Row="1"
+               HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Streetwise:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Streetwise}"/>
+            </Grid>
+
+            <Grid x:Name="Survival" Grid.Column="3" Grid.Row="0"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Survival:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Survival}"/>
+            </Grid>
+            <Grid x:Name="Vigilance" Grid.Column="3" Grid.Row="1"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Vigilance:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Vigilance}"/>
+            </Grid>
+
+            <Grid x:Name="Brawl" Grid.Column="2" Grid.Row="3"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Brawl:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Brawl}"/>
+            </Grid>
+            <Grid x:Name="Gunnery" Grid.Column="2" Grid.Row="4"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Gunnery:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Gunnery}"/>
+            </Grid>
+            <Grid x:Name="Melee" Grid.Column="2" Grid.Row="5"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Melee:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Melee}"/>
+            </Grid>
+            <Grid x:Name="RangedL" Grid.Column="2" Grid.Row="6"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Ranged Light:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding RangedL}"/>
+            </Grid>
+            <Grid x:Name="RangedH" Grid.Column="2" Grid.Row="7"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Ranged Heavy:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding RangedH}"/>
+            </Grid>
+            <Grid x:Name="Lightsaber" Grid.Column="2" Grid.Row="8"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Lightsaber:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Lightsaber}"/>
+            </Grid>
+
+            <Grid x:Name="CoreWorld" Grid.Column="3" Grid.Row="2"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Core World:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding CoreWorld}"/>
+            </Grid>
+            <Grid x:Name="Education" Grid.Column="3" Grid.Row="3"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Education:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Education}"/>
+            </Grid>
+            <Grid x:Name="Lore" Grid.Column="3" Grid.Row="4"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Lore:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Lore}"/>
+            </Grid>
+            <Grid x:Name="OuterRim" Grid.Column="3" Grid.Row="5"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Outer Rim:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding OuterRim}"/>
+            </Grid>
+            <Grid x:Name="Underworld" Grid.Column="3" Grid.Row="6"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Underworld:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Underworld}"/>
+            </Grid>
+            <Grid x:Name="WarfareKnow" Grid.Column="3" Grid.Row="7"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Warfare:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding WarfareKnow}"/>
+            </Grid>
+            <Grid x:Name="XenoKnow" Grid.Column="3" Grid.Row="8"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="5"
+                       FontSize="16"  Text="Xenology:"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding XenoKnow}"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="MinionTalents" Grid.Column="1">
+            
+        </Grid>
+    </Grid>
+</UserControl>

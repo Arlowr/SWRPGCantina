@@ -1,25 +1,21 @@
 ﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
-using SWRPGCantina.Core.Generics;
-using SWRPGCantina.Core.Models;
 using SWRPGCantina.Core.Database;
+using SWRPGCantina.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
-using static SWRPGCantina.Core.Models.NPC;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Linq;
+using static SWRPGCantina.Core.Models.NPC;
 
 namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 {
-    public class NPCCharacterMainViewModel: BindableBase, INavigationAware, INotifyPropertyChanged
+    public class NPCMinionMainViewModel : BindableBase, INavigationAware, INotifyPropertyChanged
     {
         private readonly IRegionManager _regionManager;
-        protected readonly IEventAggregator _eventAggregator; 
+        protected readonly IEventAggregator _eventAggregator;
         public event PropertyChangedEventHandler newPropertyChanged;
         private void NotifyPropertyChanged(string property)
         {
@@ -27,13 +23,6 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             {
                 newPropertyChanged(this, new PropertyChangedEventArgs(property));
             }
-        }
-
-        private NPCSkillsViewModel _npcSkillsViewModel;
-        public NPCSkillsViewModel npcSkillsViewModel
-        {
-            get { return _npcSkillsViewModel; }
-            set { SetProperty(ref _npcSkillsViewModel, value); }
         }
 
         private string _tabTitle;
@@ -70,7 +59,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
         public int Brawn
         {
             get { return _brawn; }
-            set 
+            set
             {
                 value = Math.Min(6, value);
                 value = Math.Max(1, value);
@@ -181,11 +170,12 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             get { return _NPCAlignments; }
             set { SetProperty(ref _NPCAlignments, value); }
         }
-        private List<string> _NPCTypes;
-        public List<string> NPCTypes
+
+        private List<int> _rarityRankings;
+        public List<int> RarityRankings
         {
-            get { return _NPCTypes; }
-            set { SetProperty(ref _NPCTypes, value); }
+            get { return _rarityRankings; }
+            set { SetProperty(ref _rarityRankings, value); }
         }
 
         private bool _updatedNPC;
@@ -204,8 +194,8 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 
         public DelegateCommand UpdateCommand { get; private set; }
         public DelegateCommand<string> NPCDetailsWindowCommand { get; private set; }
-        
-        public NPCCharacterMainViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+
+        public NPCMinionMainViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             _regionManager = regionManager;
             _eventAggregator = eventAggregator;
@@ -222,8 +212,8 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             NPCDetailsWindowCommand = new DelegateCommand<string>(OpenDetailsWindow);
 
 
-            NPCAlignments = new List<string>{ "None", "Neutral", "Enemy", "Ally" };
-            NPCTypes = new List<string>{ "Nemesis", "Rival" };
+            NPCAlignments = new List<string> { "None", "Neutral", "Enemy", "Ally" };
+            RarityRankings = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             UpdatedNPC = false; UpdateNPCSucess = false;
         }
 
@@ -237,11 +227,11 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                         var navParams = new NavigationParameters();
                         navParams.Add("NPC", NPC);
 
-                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCSkillsView", navParams);
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCMinionSkillsView", navParams);
                     }
                     else
                     {
-                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCSkillsView");
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCMinionSkillsView");
                     }
                     break;
                 default:
@@ -282,6 +272,8 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 else
                 {
                     SetUpNPCSkills();
+                    NPC.NPCType = "Minion";
+                    NPC.RarityRank = 5;
                 }
             }
 
@@ -347,3 +339,4 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
         }
     }
 }
+

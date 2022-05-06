@@ -123,7 +123,7 @@
                 <TextBlock Grid.Row="1" Grid.Column="1" Margin="5"
                         HorizontalAlignment="Center" VerticalAlignment="Top"
                         FontSize="24" FontWeight="DemiBold"
-                        Text="Specs and Talents" Foreground="Red"/>
+                        Text="Specs, Talents and Abilities" Foreground="#FFE81F"/>
             </Grid>
         </Viewbox>
     </Grid>

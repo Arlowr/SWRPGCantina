@@ -75,13 +75,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TheCantinaModule.cs" />
-    <Compile Include="ViewModels\AlliesAndEnemies\NPCCharacterMainViewModel.cs" />
+    <Compile Include="ViewModels\AlliesAndEnemies\NPCMainViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCSkillsViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCsMainViewModel.cs" />
     <Compile Include="ViewModels\CantinaMainViewModel.cs" />
+    <Compile Include="ViewModels\AlliesAndEnemies\NPCMinionMainViewModel.cs" />
+    <Compile Include="ViewModels\AlliesAndEnemies\NPCMinionSkillsViewModel.cs" />
+    <Compile Include="ViewModels\SkillsAndTalents\SkillsTalentsMainViewModel.cs" />
     <Compile Include="ViewModels\SWHomeViewModel.cs" />
-    <Compile Include="Views\AlliesAndEnemies\NPCCharacterMainView.xaml.cs">
-      <DependentUpon>NPCCharacterMainView.xaml</DependentUpon>
+    <Compile Include="ViewModels\SkillsAndTalents\TalentsViewModel.cs" />
+    <Compile Include="ViewModels\SkillsAndTalents\TalentCreationViewModel.cs" />
+    <Compile Include="Views\AlliesAndEnemies\NPCMainView.xaml.cs">
+      <DependentUpon>NPCMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlliesAndEnemies\NPCMinionMainView.xaml.cs">
+      <DependentUpon>NPCMinionMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlliesAndEnemies\NPCMinionSkillsView.xaml.cs">
+      <DependentUpon>NPCMinionSkillsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AlliesAndEnemies\NPCSkillsView.xaml.cs">
       <DependentUpon>NPCSkillsView.xaml</DependentUpon>
@@ -92,12 +103,29 @@
     <Compile Include="Views\CantinaMainView.xaml.cs">
       <DependentUpon>CantinaMainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SkillsAndTalents\SkillsTalentsMainView.xaml.cs">
+      <DependentUpon>SkillsTalentsMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SkillsAndTalents\TalentCreationView.xaml.cs">
+      <DependentUpon>TalentCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SkillsAndTalents\TalentsView.xaml.cs">
+      <DependentUpon>TalentsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SWHomeView.xaml.cs">
       <DependentUpon>SWHomeView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\AlliesAndEnemies\NPCCharacterMainView.xaml">
+    <Page Include="Views\AlliesAndEnemies\NPCMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AlliesAndEnemies\NPCMinionMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AlliesAndEnemies\NPCMinionSkillsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,6 +138,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CantinaMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SkillsAndTalents\SkillsTalentsMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SkillsAndTalents\TalentCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SkillsAndTalents\TalentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,5 +169,6 @@
   <ItemGroup>
     <Resource Include="Images\zapneutral.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

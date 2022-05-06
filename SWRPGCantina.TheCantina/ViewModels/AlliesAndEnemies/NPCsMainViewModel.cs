@@ -65,6 +65,42 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             }
         }
 
+        private List<int> _NPCRarityFilter;
+        public List<int> NPCRarityFilter
+        {
+            get { return _NPCRarityFilter; }
+            set { SetProperty(ref _NPCRarityFilter, value); }
+        }
+
+        private int _selectedRarityFilter;
+        public int SelectedRarityFilter
+        {
+            get { return _selectedRarityFilter; }
+            set
+            {
+                SetProperty(ref _selectedRarityFilter, value);
+                FilterNPCs();
+            }
+        }
+
+        private List<string> _NPCAffiliationFilter;
+        public List<string> NPCAffiliationFilter
+        {
+            get { return _NPCAffiliationFilter; }
+            set { SetProperty(ref _NPCAffiliationFilter, value); }
+        }
+
+        private string _selectedAffiliationFilter;
+        public string SelectedAffiliationFilter
+        {
+            get { return _selectedAffiliationFilter; }
+            set
+            {
+                SetProperty(ref _selectedAffiliationFilter, value);
+                FilterNPCs();
+            }
+        }
+
         private bool _isNeutrals;
         public bool IsNeutrals
         {
@@ -76,6 +112,86 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
         {
             if (SelectedAlignmentFilter == "Neutrals") { IsNeutrals = true; }
             else { IsNeutrals = false; }
+        }
+        private void SetFilterLists()
+        {
+            NPCAlignmentFilter = new List<string> { "All", "Neutrals", "Enemies", "Allies" };
+            SelectedAlignmentFilter = "All";
+
+            NPCTypeFilter = new List<string> { "All", "Nemeses", "Rivals", "Minions" };
+            SelectedTypeFilter = "All";
+
+            NPCRarityFilter = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            SelectedRarityFilter = 10;
+
+            NPCAffliationFilterCreation();
+            SelectedAffiliationFilter = "Any";
+        }
+
+        private void NPCAffliationFilterCreation()
+        {
+            var tempList = new List<string>();
+
+            foreach (var npc in AllNPCs)
+            {
+                var affiliationString = npc.NPCAffiliation;
+                List<string> affiliations = npc.NPCAffiliation.Split(',').Select(a => a.Trim()).ToList();
+
+                foreach (var affiliation in affiliations)
+                {
+                    if (!tempList.Contains(affiliation))
+                        tempList.Add(affiliation);
+                }
+            }
+
+            tempList.Add("Any");
+
+            NPCAffiliationFilter = new List<string>();
+            NPCAffiliationFilter = tempList;
+        }
+
+        private void FilterNPCs()
+        {
+            if (FiltersEnabled)
+            {
+                List<NPC> newList = new List<NPC>();
+                ListedNPCs = new List<NPC>();
+
+                foreach (NPC npc in AllNPCs)
+                {
+                    bool allowedToAdd = true;
+                    if (SelectedAlignmentFilter != "All")
+                    {
+                        if (SelectedAlignmentFilter == "Enemies" && npc.NPCAlignment != "Enemy") { allowedToAdd = false; }
+                        if (SelectedAlignmentFilter == "Neutrals" && npc.NPCAlignment != "Neutral") { allowedToAdd = false; }
+                        if (SelectedAlignmentFilter == "Allies" && npc.NPCAlignment != "Ally") { allowedToAdd = false; }
+                    }
+
+                    if (SelectedTypeFilter != "All")
+                    {
+                        if (SelectedTypeFilter == "Nemeses" && npc.NPCType != "Nemesis") { allowedToAdd = false; }
+                        if (SelectedTypeFilter == "Rivals" && npc.NPCType != "Rival") { allowedToAdd = false; }
+                        if (SelectedTypeFilter == "Minions" && npc.NPCType != "Minion") { allowedToAdd = false; }
+                    }
+
+                    if (npc.RarityRank > SelectedRarityFilter)
+                        allowedToAdd = false;
+
+                    if (SelectedAffiliationFilter != "Any" && npc.NPCAffiliation != SelectedAffiliationFilter)
+                        allowedToAdd = false;
+
+                    if (!string.IsNullOrEmpty(SearchFilter))
+                    {
+                        if (!npc.Name.Contains(SearchFilter)) { allowedToAdd = false; }
+                    }
+
+                    if (allowedToAdd)
+                        newList.Add(npc);
+                }
+
+
+                ListedNPCs = newList;
+            }
         }
 
         #endregion
@@ -126,6 +242,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
         public DelegateCommand SelectNPCCommand { get; private set; }
         public DelegateCommand ResetSearchCommand { get; private set; }
         public DelegateCommand NewNPCCommand { get; private set; }
+        public DelegateCommand NewMinionCommand { get; private set; }
 
         public NPCsMainViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
@@ -140,6 +257,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 
             SelectNPCCommand = new DelegateCommand(SelectNPC, CanSelectNPC);
             NewNPCCommand = new DelegateCommand(CreateNewNPC);
+            NewMinionCommand = new DelegateCommand(AddNewMinion);
             ResetSearchCommand = new DelegateCommand(ResetSearch);
 
             OpenNPCs = new List<string>();
@@ -173,15 +291,6 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             FilterNPCs();
         }
 
-        private void SetFilterLists()
-        {
-            NPCAlignmentFilter = new List<string> { "All", "Neutrals", "Enemies", "Allies" };
-            SelectedAlignmentFilter = "All";
-
-            NPCTypeFilter = new List<string> { "All", "Nemeses", "Adversaries", "Minions" };
-            SelectedTypeFilter = "All";
-        }
-
         private void ResetSearch()
         {
             SearchFilter = "";
@@ -211,7 +320,12 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 var navParams = new NavigationParameters();
                 navParams.Add("NPC", SelectedNPC);
 
-                _regionManager.RequestNavigate("NPCWindow", "NPCCharacterMainView", navParams);
+                string NPCWindowType = "NPCMainView";
+
+                if (SelectedNPC.NPCType == "Minion")
+                    NPCWindowType = "NPCMinionMainView";
+
+                _regionManager.RequestNavigate("NPCWindow", NPCWindowType, navParams);
 
                 OpenNPCs.Add(SelectedNPC.Name);
             }
@@ -227,47 +341,25 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 var navParams = new NavigationParameters();
                 navParams.Add("NPC", newNPC);
 
-                _regionManager.RequestNavigate("NPCWindow", "NPCCharacterMainView", navParams);
+                _regionManager.RequestNavigate("NPCWindow", "NPCMainView", navParams);
                 OpenNPCs.Add(newNPC.Name);
             }
         }
 
-        private void FilterNPCs()
+        private void AddNewMinion()
         {
-            if (FiltersEnabled)
-            {
-                List<NPC> newList = new List<NPC>();
-                ListedNPCs = new List<NPC>();
+            var newNPCs = OpenNPCs.Count(x => x.Contains("NewMinion"));
+            var numToAdd = "";
+            if (newNPCs + 1 > 1)
+                numToAdd = (newNPCs + 1).ToString();
+            var newNPC = new NPC();
+            newNPC.Name = "NewMinion" + numToAdd;
 
-                foreach (NPC npc in AllNPCs)
-                {
-                    bool allowedToAdd = true;
-                    if (SelectedAlignmentFilter != "All")
-                    {
-                        if (SelectedAlignmentFilter == "Enemies" && npc.NPCAlignment != "Enemy") { allowedToAdd = false; }
-                        if (SelectedAlignmentFilter == "Neutrals" && npc.NPCAlignment != "Neutral") { allowedToAdd = false; }
-                        if (SelectedAlignmentFilter == "Allies" && npc.NPCAlignment != "Ally") { allowedToAdd = false; }
-                    }
+            var navParams = new NavigationParameters();
+            navParams.Add("NPC", newNPC);
 
-                    if (SelectedTypeFilter != "All")
-                    {
-                        if (SelectedTypeFilter == "Nemeses" && npc.NPCAlignment != "Nemesis") { allowedToAdd = false; }
-                        if (SelectedTypeFilter == "Adversaries" && npc.NPCAlignment != "Adversary") { allowedToAdd = false; }
-                        if (SelectedTypeFilter == "Minions" && npc.NPCAlignment != "Minion") { allowedToAdd = false; }
-                    }
-
-                    if (!string.IsNullOrEmpty(SearchFilter))
-                    {
-                        if (!npc.Name.Contains(SearchFilter)) { allowedToAdd = false; }
-                    }
-                    
-                    if (allowedToAdd)
-                        newList.Add(npc);
-                }
-
-
-                ListedNPCs = newList;
-            }
+            _regionManager.RequestNavigate("NPCWindow", "NPCMinionMainView", navParams);
+            OpenNPCs.Add(newNPC.Name);
         }
     }
 }

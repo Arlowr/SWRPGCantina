@@ -18,6 +18,6 @@ namespace SWRPGCantina.Core.Models
         public string NPCAlignment { get; set; }
         public string NPCAffiliation { get; set; }
         public string Source { get; set; }
-        public int FrequencyRanking { get; set; }
+        public int RarityRank { get; set; }
     }
 }

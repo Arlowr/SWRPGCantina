@@ -69,6 +69,7 @@ namespace SWRPGCantina.Core.Database
                         NPCType = o["NPCType"] != DBNull.Value ? o.Field<string>("NPCType") : "None",
                         NPCAlignment = o["NPCAlignment"] != DBNull.Value ? o.Field<string>("NPCAlignment") : "None",
                         NPCAffiliation = o["NPCAffiliation"] != DBNull.Value ? o.Field<string>("NPCAffiliation") : "None",
+                        RarityRank = o["RarityRank"] != DBNull.Value ? o.Field<int>("RarityRank") : 1,
                         CharacterDescription = o["NPCDescription"] != DBNull.Value ? o.Field<string>("NPCDescription") : "",
                         Species = o["Species"] != DBNull.Value ? o.Field<string>("Species") : "",
                         Gender = o["Gender"] != DBNull.Value ? o.Field<string>("Gender") : "",
@@ -239,6 +240,7 @@ namespace SWRPGCantina.Core.Database
                     cmd.Parameters.Add("@NPCAlignment", SqlDbType.VarChar).Value = npc.NPCAlignment;
                     cmd.Parameters.Add("@NPCAffiliation", SqlDbType.VarChar).Value = npc.NPCAffiliation;
                     cmd.Parameters.Add("@NPCDescription", SqlDbType.VarChar).Value = npc.CharacterDescription;
+                    cmd.Parameters.Add("@RarityRank", SqlDbType.VarChar).Value = npc.RarityRank;
                     cmd.Parameters.Add("@Species", SqlDbType.VarChar).Value = npc.Species;
                     cmd.Parameters.Add("@Height", SqlDbType.Int).Value = npc.Height;
                     cmd.Parameters.Add("@Eyes", SqlDbType.VarChar).Value = npc.EyeColour;

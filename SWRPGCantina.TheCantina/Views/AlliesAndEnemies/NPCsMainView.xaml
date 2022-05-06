@@ -131,36 +131,67 @@
                 <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Grid.Column="0"
+                    <StackPanel Grid.Row="0" Grid.Column="0" MaxWidth="140"
                         Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
                         <TextBlock Margin="5" FontSize="12" Text="Alignment Filter:"/>
                         <ComboBox FontSize="12" MinHeight="30" MinWidth="100"
                                  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
                                  ItemsSource="{Binding NPCAlignmentFilter}" SelectedItem="{Binding SelectedAlignmentFilter}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="0"
+                    <StackPanel Grid.Row="1" Grid.Column="0" MaxWidth="140"
                         Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
                         <TextBlock Margin="5" FontSize="12" Text="Type Filter:"/>
                         <ComboBox FontSize="12" MinHeight="30" MinWidth="100"
                                  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
                                  ItemsSource="{Binding NPCTypeFilter}" SelectedItem="{Binding SelectedTypeFilter}"/>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" MaxWidth="140"
+                        Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                        <TextBlock TextWrapping="Wrap"
+                            Margin="5" FontSize="12" Text="Rarity Filter (Number and more common):"/>
+                        <ComboBox FontSize="12" MinHeight="30" MinWidth="50"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                 ItemsSource="{Binding NPCRarityFilter}" SelectedItem="{Binding SelectedRarityFilter}"/>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="1" MaxWidth="140"
+                        Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                        <TextBlock TextWrapping="Wrap"
+                            Margin="5" FontSize="12" Text="Affiliation Filter:"/>
+                        <ComboBox FontSize="12" MinHeight="30" MinWidth="140" MaxWidth="160"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                 ItemsSource="{Binding NPCAffiliationFilter}" SelectedItem="{Binding SelectedAffiliationFilter}"/>
+                    </StackPanel>
                 </Grid>
 
-
-                <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top"
-                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
-                    Margin="5" Padding="5" Width="100"
-                    Command="{Binding NewNPCCommand}">
-                    <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
-                           Text="New NPC"/>
-                </Button>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top"
+                        Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                        Margin="5" Padding="5" Width="100"
+                        Command="{Binding NewNPCCommand}">
+                            <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                               Text="New NPC"/>
+                    </Button>
+                    <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"
+                        Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
+                        Margin="5" Padding="5" Width="100"
+                        Command="{Binding NewMinionCommand}">
+                        <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#FFE81F" 
+                               Text="New Minion"/>
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
         <Grid Grid.Column="1">

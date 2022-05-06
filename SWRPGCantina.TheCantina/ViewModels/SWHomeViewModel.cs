@@ -29,6 +29,7 @@ namespace SWRPGCantina.TheCantina.ViewModels
                     _regionManger.RequestNavigate("SWContentRegion", "NPCsMainView");
                     break;
                 case "SpecsAndTalents":
+                    _regionManger.RequestNavigate("SWContentRegion", "SkillsTalentsMainView");
                     break;
                 default:
                     break;

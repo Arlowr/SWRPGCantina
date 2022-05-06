@@ -3,6 +3,7 @@ using Prism.Modularity;
 using Prism.Regions;
 using SWRPGCantina.TheCantina.Views;
 using SWRPGCantina.TheCantina.Views.AlliesAndEnemies;
+using SWRPGCantina.TheCantina.Views.SkillsAndTalents;
 
 namespace SWRPGCantina.TheCantina
 {
@@ -18,8 +19,13 @@ namespace SWRPGCantina.TheCantina
             containerRegistry.RegisterForNavigation<CantinaMainView>();
             containerRegistry.RegisterForNavigation<SWHomeView>();
             containerRegistry.RegisterForNavigation<NPCsMainView>();
-            containerRegistry.RegisterForNavigation<NPCCharacterMainView>();
+            containerRegistry.RegisterForNavigation<NPCMainView>(); 
             containerRegistry.RegisterForNavigation<NPCSkillsView>();
+            containerRegistry.RegisterForNavigation<NPCMinionMainView>();
+            containerRegistry.RegisterForNavigation<NPCMinionSkillsView>();
+            containerRegistry.RegisterForNavigation<SkillsTalentsMainView>();
+            containerRegistry.RegisterForNavigation<TalentCreationView>();
+            containerRegistry.RegisterForNavigation<TalentsView>();
         }
     }
 }

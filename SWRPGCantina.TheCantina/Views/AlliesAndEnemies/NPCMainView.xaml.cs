@@ -18,9 +18,9 @@ namespace SWRPGCantina.TheCantina.Views.AlliesAndEnemies
     /// <summary>
     /// Interaction logic for NPCCharacterMainView.xaml
     /// </summary>
-    public partial class NPCCharacterMainView : UserControl
+    public partial class NPCMainView : UserControl
     {
-        public NPCCharacterMainView()
+        public NPCMainView()
         {
             InitializeComponent();
         }
