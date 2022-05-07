@@ -4,15 +4,16 @@
              xmlns:prism="http://prismlibrary.com/"          
              xmlns:conv="clr-namespace:MyWPFCommonConverters;assembly=MyWPFCommonConverters"   
              prism:ViewModelLocator.AutoWireViewModel="True"
-             MinWidth="600" MinHeight="400">
+             MinWidth="400" MaxWidth="600" MinHeight="400">
     <UserControl.Resources>
         <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter"/>
         <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" Negate="True"/>
         <conv:NegatableBooleanToSizeConverter x:Key="SizeConverter"/>
         <conv:NegatableBooleanToSizeConverter x:Key="NegSizeConverter" Negate="True"/>
+        <conv:InverseBooleanConverter x:Key="InverseConverter"/>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid VerticalAlignment="Top" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{Binding ForCharacter ,Converter={StaticResource NegSizeConverter}}"/>
@@ -25,68 +26,68 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="{Binding ForCharacter ,Converter={StaticResource NegSizeConverter}}"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="5"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Name:"/>
-                <TextBox Width="150"
+                <TextBlock Text="Name:" FontSize="16"/>
+                <TextBox Width="150" FontSize="16"
                          IsReadOnly="{Binding ForCharacter}"
                     Text="{Binding EditingTalent.Name}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
-                        Visibility="{Binding NeedsRank}">
-                <TextBlock Text="Rank:" Margin="3"/>
-                <ComboBox ItemsSource="{Binding RankList}" SelectedItem="{Binding SelectedRank}" Margin="3"/>
+                        Visibility="{Binding NeedsRank, Converter={StaticResource VisConverter}}">
+                <TextBlock Text="Rank:" Margin="3" FontSize="16"/>
+                <ComboBox ItemsSource="{Binding RankList}" SelectedItem="{Binding SelectedRank}" Margin="3" FontSize="16"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
-                        Visibility="{Binding ForCharacter, Converter={StaticResource VisConverter}}">
-                <TextBlock Text="Needs Ranks:" Margin="3"/>
-                <CheckBox IsChecked="{Binding Talent.NeedsRanks}" Margin="3"/>
+                        Visibility="{Binding ForCharacter, Converter={StaticResource NegVisConverter}}">
+                <TextBlock Text="Needs Ranks:" Margin="3" FontSize="16"/>
+                <CheckBox IsChecked="{Binding EditingTalent.NeedsRanks}" Margin="3"/>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
-                        IsEnabled="{Binding ForCharacter}">
-                <TextBlock Text="Is Force Talent:" Margin="3"/>
-                <CheckBox IsChecked="{Binding Talent.NeedsRanks}" Margin="3"/>
+                        IsEnabled="{Binding ForCharacter, Converter={StaticResource InverseConverter}}">
+                <TextBlock Text="Is Force Talent:" Margin="3" FontSize="16"/>
+                <CheckBox IsChecked="{Binding EditingTalent.IsForceTalent}" Margin="3"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
-                        IsEnabled="{Binding ForCharacter}">
-                <TextBlock Text="Is Active Talent:" Margin="3"/>
-                <CheckBox IsChecked="{Binding Talent.NeedsRanks}" Margin="3"/>
+                        IsEnabled="{Binding ForCharacter, Converter={StaticResource InverseConverter}}">
+                <TextBlock Text="Is Active Talent:" Margin="3" FontSize="16"/>
+                <CheckBox IsChecked="{Binding EditingTalent.IsActiveTalent}" Margin="3"/>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Name:" Margin="3"/>
-                <TextBox Width="250" Height="150" Margin="3"
-                         IsReadOnly="{Binding ForCharacter}"
+                <TextBlock Text="Name:" Margin="3" FontSize="16" Width="50"/>
+                <TextBox Width="350" Height="200" Margin="3" FontSize="16"
+                    IsReadOnly="{Binding ForCharacter}" TextWrapping="Wrap"
                     Text="{Binding EditingTalent.Description}"/>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" Margin="5"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Text="Stat Increase:" Margin="3"/>
-                <ComboBox Width="150" Margin="3"
+                    Text="Stat Increase:" Margin="3" FontSize="16"/>
+                <ComboBox Width="150" Margin="3" FontSize="16"
                      ItemsSource="{Binding PossibleStatIncreaseList}" SelectedItem="{Binding EditingTalent.StatIncreaseName}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Text="Increase Amount" Margin="3"/>
+                    Text="Increase Amount" Margin="3" FontSize="16"/>
                 <TextBox Width="50" Margin="3"
-                     Text="{Binding EditingTalent.IncreaseAmount}"/>
+                     Text="{Binding EditingTalent.StatIncrease}" FontSize="16"/>
             </StackPanel>
         </Grid>
-        <Button Grid.Row="1" VerticalAlignment="Bottom"
+        <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
                 Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
                 Margin="5" Padding="2" 
-                Command="{Binding UpdateTalent}">
-            <TextBlock Text="{Binding UpdateTalentText}"
+                Command="{Binding UpdateTalentCommand}">
+            <TextBlock Text="{Binding UpdateTalentText}" HorizontalAlignment="Center" VerticalAlignment="Center"
                     TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Foreground="#FFE81F"/>
         </Button>
     </Grid>

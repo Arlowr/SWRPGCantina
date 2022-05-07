@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using SWRPGCantina.Core.Database;
@@ -6,12 +7,14 @@ using SWRPGCantina.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static SWRPGCantina.Core.Models.Talent;
 
 namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
 {
     public class TalentsViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
+        protected readonly IEventAggregator _eventAggregator;
         private List<Talent> _talentsList;
         public List<Talent> TalentsList
         {
@@ -25,30 +28,38 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
             set 
             { 
                 SetProperty(ref _selectedTalent, value);
-                DisplayTalent = new Talent
-                {
-                    DbId = SelectedTalent.DbId,
-                    Name = SelectedTalent.Name,
-                    Description = SelectedTalent.Description,
-                    StatIncrease = SelectedTalent.StatIncrease,
-                    StatIncreaseName = SelectedTalent.StatIncreaseName, 
-                    IsActiveTalent = SelectedTalent.IsActiveTalent,
-                    IsForceTalent = SelectedTalent.IsForceTalent
-                };
             }
-        }
-
-        private Talent _displayTalent;
-        public Talent DisplayTalent
-        {
-            get { return _displayTalent; }
-            set { SetProperty(ref _displayTalent, value); }
         }
         public DelegateCommand NewTalentCommand { get; private set; }
         public DelegateCommand UpdateTalentCommand { get; private set; }
-        public TalentsViewModel(IRegionManager regionManger)
+        public TalentsViewModel(IRegionManager regionManger, IEventAggregator eventAggregator)
         {
             _regionManager = regionManger;
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<TalentUpdatedEvent>().Subscribe((Talent) =>
+            {
+                if (!TalentsList.Any(x => x.DbId == Talent.DbId))
+                {
+                    TalentsList.Add(Talent);
+                } 
+                else
+                {
+                    foreach (var checkTalent in TalentsList)
+                    {
+                        if(checkTalent.DbId == Talent.DbId)
+                        {
+                            checkTalent.Name = Talent.Name;
+                            checkTalent.Description = Talent.Description;
+                            checkTalent.IsForceTalent = Talent.IsForceTalent;
+                            checkTalent.IsActiveTalent = Talent.IsActiveTalent;
+                            checkTalent.NeedsRanks = Talent.NeedsRanks;
+                            checkTalent.StatIncrease = checkTalent.StatIncrease;
+                            checkTalent.StatIncreaseName = checkTalent.StatIncreaseName;
+                        }
+                    }
+                }
+                UpdateTalentsList();
+            });
 
             NewTalentCommand = new DelegateCommand(NewTalentCommandHandler);
             UpdateTalentCommand = new DelegateCommand(UpdateTalentCommandHandler);
@@ -56,6 +67,23 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
 
             SkillsAndTalentsDBControl dbControl = new SkillsAndTalentsDBControl();
             TalentsList = dbControl.GetListOfTalents();
+        }
+
+        private void UpdateTalentsList()
+        {
+            List<Talent> tempList = new List<Talent>();
+
+            foreach (var talent in TalentsList)
+            {
+                tempList.Add(talent);
+            }
+
+            TalentsList = new List<Talent>();
+
+            foreach (var talent in tempList)
+            {
+                TalentsList.Add(talent);
+            }
         }
 
         private void UpdateTalentCommandHandler()

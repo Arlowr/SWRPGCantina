@@ -60,5 +60,42 @@ namespace SWRPGCantina.Core.Database
                 throw;
             }
         }
+
+
+        public bool AddOrUpdateTalent(Talent talent)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[AddUpdateTalent]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@TalentId", SqlDbType.VarChar).Value = talent.DbId;
+                    cmd.Parameters.Add("@Talent_Name", SqlDbType.VarChar).Value = talent.Name;
+                    cmd.Parameters.Add("@Talent_Text", SqlDbType.VarChar).Value = talent.Description;
+                    cmd.Parameters.Add("@IsForce", SqlDbType.VarChar).Value = talent.IsForceTalent;
+                    cmd.Parameters.Add("@IsActive", SqlDbType.VarChar).Value = talent.IsActiveTalent;
+                    cmd.Parameters.Add("@StatIncrName", SqlDbType.VarChar).Value = talent.StatIncreaseName;
+                    cmd.Parameters.Add("@StatIncrNum", SqlDbType.VarChar).Value = talent.StatIncrease;
+                    cmd.Parameters.Add("@NeedsRanks", SqlDbType.VarChar).Value = talent.NeedsRanks;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                return false;
+            }
+        }
     }
 }
