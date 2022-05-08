@@ -16,7 +16,7 @@
     <Grid VerticalAlignment="Top" Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="{Binding ForCharacter ,Converter={StaticResource NegSizeConverter}}"/>
+            <RowDefinition Height="{Binding DisplayOnly ,Converter={StaticResource NegSizeConverter}}"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -27,59 +27,59 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="4*"/>
-                <RowDefinition Height="{Binding ForCharacter ,Converter={StaticResource NegSizeConverter}}"/>
+                <RowDefinition Height="{Binding DisplayOnly ,Converter={StaticResource NegSizeConverter}}"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="5"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Name:" FontSize="16"/>
                 <TextBox Width="150" FontSize="16"
-                         IsReadOnly="{Binding ForCharacter}"
+                         IsReadOnly="{Binding DisplayOnly}"
                     Text="{Binding EditingTalent.Name}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
                         Visibility="{Binding NeedsRank, Converter={StaticResource VisConverter}}">
                 <TextBlock Text="Rank:" Margin="3" FontSize="16"/>
-                <ComboBox ItemsSource="{Binding RankList}" SelectedItem="{Binding SelectedRank}" Margin="3" FontSize="16"/>
+                <ComboBox IsReadOnly="{Binding DisplayOnly}" ItemsSource="{Binding RankList}" SelectedItem="{Binding EditingTalent.Rank}" Margin="3" FontSize="16"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
                         Visibility="{Binding ForCharacter, Converter={StaticResource NegVisConverter}}">
                 <TextBlock Text="Needs Ranks:" Margin="3" FontSize="16"/>
-                <CheckBox IsChecked="{Binding EditingTalent.NeedsRanks}" Margin="3"/>
+                <CheckBox IsEnabled="{Binding DisplayOnly, Converter={StaticResource InverseConverter}}" IsChecked="{Binding EditingTalent.NeedsRanks}" Margin="3"/>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
-                        IsEnabled="{Binding ForCharacter, Converter={StaticResource InverseConverter}}">
+                        IsEnabled="{Binding DisplayOnly, Converter={StaticResource InverseConverter}}">
                 <TextBlock Text="Is Force Talent:" Margin="3" FontSize="16"/>
                 <CheckBox IsChecked="{Binding EditingTalent.IsForceTalent}" Margin="3"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center"
-                        IsEnabled="{Binding ForCharacter, Converter={StaticResource InverseConverter}}">
+                        IsEnabled="{Binding DisplayOnly, Converter={StaticResource InverseConverter}}">
                 <TextBlock Text="Is Active Talent:" Margin="3" FontSize="16"/>
                 <CheckBox IsChecked="{Binding EditingTalent.IsActiveTalent}" Margin="3"/>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Name:" Margin="3" FontSize="16" Width="50"/>
+                <TextBlock Text="Effect:" Margin="3" FontSize="16" Width="50"/>
                 <TextBox Width="350" Height="200" Margin="3" FontSize="16"
-                    IsReadOnly="{Binding ForCharacter}" TextWrapping="Wrap"
+                    IsReadOnly="{Binding DisplayOnly}" TextWrapping="Wrap"
                     Text="{Binding EditingTalent.Description}"/>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" Margin="5"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                     Text="Stat Increase:" Margin="3" FontSize="16"/>
-                <ComboBox Width="150" Margin="3" FontSize="16"
+                <ComboBox Width="150" Margin="3" FontSize="16" IsReadOnly="{Binding DisplayOnly}"
                      ItemsSource="{Binding PossibleStatIncreaseList}" SelectedItem="{Binding EditingTalent.StatIncreaseName}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" Margin="3"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
                     Text="Increase Amount" Margin="3" FontSize="16"/>
-                <TextBox Width="50" Margin="3"
+                <TextBox Width="50" Margin="3" IsReadOnly="{Binding DisplayOnly}"
                      Text="{Binding EditingTalent.StatIncrease}" FontSize="16"/>
             </StackPanel>
         </Grid>

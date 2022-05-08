@@ -35,6 +35,13 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
             set { SetProperty(ref _needsRank, value); }
         }
 
+        private bool _displayOnly;
+        public bool DisplayOnly
+        {
+            get { return _displayOnly; }
+            set { SetProperty(ref _displayOnly, value); }
+        }
+
         private Talent _editingTalent;
         public Talent EditingTalent
         {
@@ -66,6 +73,8 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
 
             PossibleStatIncreaseList = new List<string> { "None", "Soak", "Strain", "Wounds" };
             RankList = new List<int> { 1, 2, 3, 4, 5 };
+
+            DisplayOnly = false;
         }
 
         private void UpdateTalentCommandHandler()

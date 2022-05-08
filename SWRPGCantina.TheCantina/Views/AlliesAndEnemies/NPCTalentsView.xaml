@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="SWRPGCantina.TheCantina.Views.AlliesAndEnemies.NPCTalentsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Talents:" FontSize="16"/>
+                <ListBox Height="200" Width="250" FontSize="16"
+                    ItemsSource="{Binding TalentsList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTalent}"
+                    DisplayMemberPath="Name"/>
+            </StackPanel>
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
+                    Margin="5" Padding="2" 
+                    Command="{Binding NewTalentCommand}">
+                    <TextBlock Text="New Talent" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Foreground="#FFE81F"/>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
+                    Margin="5" Padding="2" 
+                    Command="{Binding UpdateTalentCommand}">
+                    <TextBlock Text="Update Talent" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Foreground="#FFE81F"/>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Talents:" FontSize="16"/>
+                <ListBox Height="200" Width="250" FontSize="16"
+                    ItemsSource="{Binding TalentsList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedTalent}"
+                    DisplayMemberPath="Name"/>
+            </StackPanel>
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
+                    Margin="5" Padding="2" 
+                    Command="{Binding NewTalentCommand}">
+                    <TextBlock Text="New Talent" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Foreground="#FFE81F"/>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                    Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
+                    Margin="5" Padding="2" 
+                    Command="{Binding UpdateTalentCommand}">
+                    <TextBlock Text="Update Talent" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Foreground="#FFE81F"/>
+                </Button>
+            </Grid>
+        </Grid>
+        <ContentControl Grid.Column="1" Grid.RowSpan="2" MinWidth="600" BorderBrush="Transparent" Background="Transparent"
+                        prism:RegionManager.RegionName="NPCSelectedTalentRegion"/>
+    </Grid>
+</UserControl>

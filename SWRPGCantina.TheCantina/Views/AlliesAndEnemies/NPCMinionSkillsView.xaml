@@ -433,7 +433,8 @@
             </Grid>
         </Grid>
         <Grid x:Name="MinionTalents" Grid.Column="1">
-            
+            <ContentControl Grid.Column="1" MinWidth="600" BorderBrush="Transparent" Background="Transparent"
+                        prism:RegionManager.RegionName="NPCTalentsRegion"/>
         </Grid>
     </Grid>
 </UserControl>

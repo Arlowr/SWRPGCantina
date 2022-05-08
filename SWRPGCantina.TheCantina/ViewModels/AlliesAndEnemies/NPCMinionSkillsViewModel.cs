@@ -12,6 +12,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 {
     public class NPCMinionSkillsViewModel : BindableBase, INavigationAware
     {
+        private readonly IRegionManager _regionManager;
         protected readonly IEventAggregator _eventAggregator;
 
         private NPC _NPC;
@@ -554,10 +555,10 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 
         #endregion
 
-        public NPCMinionSkillsViewModel(IEventAggregator eventAggregator)
+        public NPCMinionSkillsViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
+            _regionManager = regionManager;
             _eventAggregator = eventAggregator;
-
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -576,6 +577,8 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 NPC = navigationContext.Parameters.GetValue<NPC>("NPC");
 
             SetUpSkills();
+
+            _regionManager.RequestNavigate("NPCTalentsRegion", "NPCTalentsView");
         }
 
         private void SetUpSkills()
