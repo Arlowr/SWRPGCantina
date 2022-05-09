@@ -67,6 +67,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
 
             SkillsAndTalentsDBControl dbControl = new SkillsAndTalentsDBControl();
             TalentsList = dbControl.GetListOfTalents();
+            
         }
 
         private void UpdateTalentsList()

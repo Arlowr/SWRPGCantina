@@ -21,13 +21,6 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
             set { SetProperty(ref _updateTalentText, value); }
         }
 
-        private bool _forCharacter;
-        public bool ForCharacter
-        {
-            get { return _forCharacter; }
-            set { SetProperty(ref _forCharacter, value); }
-        }
-
         private bool _needsRank;
         public bool NeedsRank
         {
@@ -35,11 +28,25 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
             set { SetProperty(ref _needsRank, value); }
         }
 
-        private bool _displayOnly;
-        public bool DisplayOnly
+        private bool _talentEditing;
+        public bool TalentEditing
         {
-            get { return _displayOnly; }
-            set { SetProperty(ref _displayOnly, value); }
+            get { return _talentEditing; }
+            set { SetProperty(ref _talentEditing, value); }
+        }
+
+        private bool _updatesAllowed;
+        public bool UpdatesAllowed
+        {
+            get { return _updatesAllowed; }
+            set { SetProperty(ref _updatesAllowed, value); }
+        }
+
+        private bool _forCharacterEditing;
+        public bool ForCharacterEditing
+        {
+            get { return _forCharacterEditing; }
+            set { SetProperty(ref _forCharacterEditing, value); }
         }
 
         private Talent _editingTalent;
@@ -73,8 +80,6 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
 
             PossibleStatIncreaseList = new List<string> { "None", "Soak", "Strain", "Wounds" };
             RankList = new List<int> { 1, 2, 3, 4, 5 };
-
-            DisplayOnly = false;
         }
 
         private void UpdateTalentCommandHandler()
@@ -85,6 +90,13 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
                 EditingTalent.StatIncrease = 0;
 
             DbControl.AddOrUpdateTalent(EditingTalent);
+
+            if(UpdateTalentText =="Save Talent")
+            {
+                var tempTalents = DbControl.GetListOfTalents();
+
+                EditingTalent.DbId = tempTalents.FirstOrDefault(x => x.Name == EditingTalent.Name).DbId;
+            }    
 
             _eventAggregator.GetEvent<TalentUpdatedEvent>().Publish(_editingTalent);
 
@@ -104,21 +116,27 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
 
                 if(DisplayType == "New")
                 {
-                    ForCharacter = false;
                     NeedsRank = false;
+                    TalentEditing = true;
+                    ForCharacterEditing = false;
+                    UpdatesAllowed = true;
                     UpdateTalentText = "Save Talent";
                 } 
                 else if (DisplayType == "Update")
                 {
-                    ForCharacter = false;
                     NeedsRank = false;
+                    TalentEditing = true;
+                    ForCharacterEditing = false;
+                    UpdatesAllowed = true;
                     UpdateTalentText = "Update Talent";
                 } 
                 else if (DisplayType == "CharacterStyle")
                 {
-                    ForCharacter = true;
-                    NeedsRank = true;
                     NeedsRank = EditingTalent.NeedsRanks;
+                    TalentEditing = false;
+                    ForCharacterEditing = true;
+                    UpdatesAllowed = true;
+                    UpdateTalentText = "Update Character's Talent";
                 }
             }
         }

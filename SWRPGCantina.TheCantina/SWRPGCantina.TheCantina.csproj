@@ -82,10 +82,14 @@
     <Compile Include="ViewModels\AlliesAndEnemies\NPCMinionMainViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCMinionSkillsViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCTalentsViewModel.cs" />
+    <Compile Include="ViewModels\AlliesAndEnemies\NPCAbilitiesMainViewModel.cs" />
     <Compile Include="ViewModels\SkillsAndTalents\SkillsTalentsMainViewModel.cs" />
     <Compile Include="ViewModels\SWHomeViewModel.cs" />
     <Compile Include="ViewModels\SkillsAndTalents\TalentsViewModel.cs" />
     <Compile Include="ViewModels\SkillsAndTalents\TalentCreationViewModel.cs" />
+    <Compile Include="Views\AlliesAndEnemies\NPCAbilitiesMainView.xaml.cs">
+      <DependentUpon>NPCAbilitiesMainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AlliesAndEnemies\NPCMainView.xaml.cs">
       <DependentUpon>NPCMainView.xaml</DependentUpon>
     </Compile>
@@ -121,6 +125,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AlliesAndEnemies\NPCAbilitiesMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AlliesAndEnemies\NPCMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

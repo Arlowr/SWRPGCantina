@@ -245,6 +245,32 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                         _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCSkillsView");
                     }
                     break;
+                case "Talents":
+                    if (NPC != null)
+                    {
+                        var navParams = new NavigationParameters();
+                        navParams.Add("NPC", NPC);
+
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCTalentsView", navParams);
+                    }
+                    else
+                    {
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCTalentsView");
+                    }
+                    break;
+                case "Abilities":
+                    if (NPC != null)
+                    {
+                        var navParams = new NavigationParameters();
+                        navParams.Add("NPC", NPC);
+
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCAbilitiesMainView", navParams);
+                    }
+                    else
+                    {
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCAbilitiesMainView");
+                    }
+                    break;
                 default:
                     break;
             }

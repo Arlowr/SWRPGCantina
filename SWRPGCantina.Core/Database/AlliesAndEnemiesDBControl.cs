@@ -224,8 +224,68 @@ namespace SWRPGCantina.Core.Database
             return npcNeedingDetails;
         }
 
+        public List<Talent> GetNPCTalents(int npcID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[GetNPCTalents]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@NPCDBID", SqlDbType.VarChar).Value = npcID;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    SqlDataAdapter getNPCs = new SqlDataAdapter(cmd);
+
+                    DataSet dsT = new DataSet();
+                    getNPCs.Fill(dsT);
+                    var t = dsT.Tables[0].AsEnumerable().Select(o => new Talent()
+                    {
+                        DbId = o["TalentID"] != DBNull.Value ? o.Field<int>("TalentID") : 0,
+                        Name = o["Title"] != DBNull.Value ? o.Field<string>("Title") : "",
+                        Description = o["TalentText"] != DBNull.Value ? o.Field<string>("TalentText") : "",
+                        IsForceTalent = o["IsForceTalent"] != DBNull.Value ? o.Field<bool>("IsForceTalent") : false,
+                        IsActiveTalent = o["IsActive"] != DBNull.Value ? o.Field<bool>("IsActive") : false,
+                        StatIncreaseName = o["StatIncreasename"] != DBNull.Value ? o.Field<string>("StatIncreasename") : "",
+                        StatIncrease = o["StatIncNum"] != DBNull.Value ? o.Field<int>("StatIncNum") : 0,
+                        NeedsRanks = o["NeedsRanks"] != DBNull.Value ? o.Field<bool>("NeedsRanks") : false,
+                        Rank = o["Rank"] != DBNull.Value ? o.Field<int>("Rank") : 0,
+                        CharacterDBInt = npcID
+                    });
+
+                    conn.Close();
+
+                    return t.ToList();
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                throw;
+            }
+        }
+
         public bool AddOrUpdateAdversary(NPC npc)
         {
+            string ListOfTalents = "";
+            bool first = true;
+            foreach (var talent in npc.Talents)
+            {
+                if (first)
+                {
+                    ListOfTalents = talent.DbId.ToString();
+                }
+                else
+                {
+                    ListOfTalents = ListOfTalents + "," + talent.DbId.ToString();
+                }
+                first = false;
+            }
+
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -310,7 +370,27 @@ namespace SWRPGCantina.Core.Database
 
                     cmd.ExecuteNonQuery();
 
-                    conn.Close();
+                    if (string.IsNullOrEmpty(ListOfTalents))
+                    {
+                        cmd.CommandText = "[dbo].[RemoveNPCsTalents]";
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.Add("@NPCDBID", SqlDbType.Int).Value = npc.DBID;
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        cmd.CommandText = "[dbo].[AddUpdateAdversaryTalents]";
+
+                        foreach (var talent in npc.Talents)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.Add("@NPCDBID", SqlDbType.Int).Value = npc.DBID;
+                            cmd.Parameters.Add("@ListOfTalentIDsToKeep", SqlDbType.VarChar).Value = ListOfTalents;
+                            cmd.Parameters.Add("@TalentID", SqlDbType.Int).Value = talent.DbId;
+                            cmd.Parameters.Add("@Rank", SqlDbType.Int).Value = talent.Rank;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
 
                     return true;
                 }

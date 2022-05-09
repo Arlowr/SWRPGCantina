@@ -578,7 +578,9 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
 
             SetUpSkills();
 
-            _regionManager.RequestNavigate("NPCTalentsRegion", "NPCTalentsView");
+            var navParams = new NavigationParameters();
+            navParams.Add("NPC", NPC);
+            _regionManager.RequestNavigate("NPCTalentsRegion", "NPCTalentsView", navParams);
         }
 
         private void SetUpSkills()

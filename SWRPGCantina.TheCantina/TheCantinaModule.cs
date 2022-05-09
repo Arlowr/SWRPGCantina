@@ -24,6 +24,7 @@ namespace SWRPGCantina.TheCantina
             containerRegistry.RegisterForNavigation<NPCMinionMainView>();
             containerRegistry.RegisterForNavigation<NPCMinionSkillsView>();
             containerRegistry.RegisterForNavigation<NPCTalentsView>();
+            containerRegistry.RegisterForNavigation<NPCAbilitiesMainView>();
             containerRegistry.RegisterForNavigation<SkillsTalentsMainView>();
             containerRegistry.RegisterForNavigation<TalentCreationView>();
             containerRegistry.RegisterForNavigation<TalentsView>();

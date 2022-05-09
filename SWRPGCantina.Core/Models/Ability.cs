@@ -8,5 +8,9 @@ namespace SWRPGCantina.Core.Models
 {
     public class Ability
     {
+        public string Name { get; set; }
+        public int CharacterDbId { get; set; }
+        public string When { get; set; }
+        public string Effect { get; set; }
     }
 }
