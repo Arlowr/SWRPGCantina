@@ -134,7 +134,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             RemoveCharacterTalentCommand = new DelegateCommand(RemoveTalentCommandHandler, CanRemoveCharacterTalent);
             UpdateCharacterTalentCommand = new DelegateCommand(UpdateCharacterTalentCommandHandler, CanUpdateCharacterTalent);
 
-            SkillsAndTalentsDBControl dbTalentControl = new SkillsAndTalentsDBControl();
+            CharacteristicsAndEquipmentDBControl dbTalentControl = new CharacteristicsAndEquipmentDBControl();
             AllTalentsList = dbTalentControl.GetListOfTalents();
             UnusedTalentList = new List<Talent>();
             CharacterTalentList = new List<Talent>();

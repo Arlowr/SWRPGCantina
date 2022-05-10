@@ -43,6 +43,36 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             set { SetProperty(ref _NPCDetailsWindowName, value); }
         }
 
+        private string _updateCharacterText;
+        public string UpdateCharacterText
+        {
+            get { return _updateCharacterText; }
+            set { SetProperty(ref _updateCharacterText, value); }
+        }
+
+        private string _characterName;
+        public string CharacterName
+        {
+            get { return _characterName; }
+            set 
+            { 
+                SetProperty(ref _characterName, value);
+                if(NPC.Name != CharacterName)
+                {
+                    NPC.Name = CharacterName;
+                    _eventAggregator.GetEvent<NPCUpdatedEvent>().Publish(_NPC);
+                }
+                UpdateCharacterText = "Update " + CharacterName;
+            }
+        }
+
+        private string _updateText;
+        public string UpdateText
+        {
+            get { return _updateText; }
+            set { SetProperty(ref _updateText, value); }
+        }
+
         private NPC _NPC;
         public NPC NPC
         {
@@ -56,6 +86,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 Cunning = NPC.Cunning;
                 Willpower = NPC.Willpower;
                 Presence = NPC.Presence;
+                CharacterName = NPC.Name;
             }
         }
 
@@ -216,6 +247,9 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                         this.NPC = NPC;
                     else if (NPC.Name.ToUpper().Contains("NEW") && (TabTitle == NPC.Name))
                         this.NPC = NPC;
+
+                UpdateText = "Uncommited changes";
+                UpdatedNPC = false;
             });
 
             UpdateCommand = new DelegateCommand(UpdateNPC, CanUpdateNPC);
@@ -314,6 +348,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 }
             }
 
+            UpdateText = "No changes yet";
         }
 
         private void SetUpNPCSkills()

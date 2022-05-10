@@ -41,7 +41,7 @@
                 <StackPanel Orientation="Vertical">
                     <TextBox Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2"
                          Width="200" Height="30"
-                         Text="{Binding NPC.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="ExtraBold"/>
+                         Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}" FontSize="16" FontWeight="ExtraBold"/>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" FontSize="12"
                         Text="Rarity?:"/>
@@ -445,11 +445,15 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                     Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black" 
-                    Margin="5" Padding="5" Width="100"
+                    Margin="5" Padding="5"
                     Command="{Binding UpdateCommand}">
                 <TextBlock TextWrapping="Wrap" FontSize="18" Foreground="#FFE81F" 
-                           Text="Update"/>
+                           Text="{Binding UpdateCharacterText}"/>
             </Button>
+            <Border Grid.Column="2" Visibility="{Binding UpdatedNPC, Converter={StaticResource NegVisConverter}}">
+                <TextBlock Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="{Binding UpdateText}" FontSize="20" FontWeight="Bold"/>
+            </Border>
             <Border Grid.Column="2" Visibility="{Binding UpdatedNPC, Converter={StaticResource VisConverter}}">
                 <TextBlock Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"
                    Text="Updated" Foreground="Green" FontSize="20" FontWeight="Bold" Visibility="{Binding UpdateNPCSucess, Converter={StaticResource VisConverter}}"/>

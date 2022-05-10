@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static SWRPGCantina.Core.Models.Talent;
 
-namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
+namespace SWRPGCantina.TheCantina.ViewModels.CharacteristicsAndEquipment
 {
     public class TalentCreationViewModel : BindableBase, INavigationAware
     {
@@ -84,7 +84,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
 
         private void UpdateTalentCommandHandler()
         {
-            SkillsAndTalentsDBControl DbControl = new SkillsAndTalentsDBControl();
+            CharacteristicsAndEquipmentDBControl DbControl = new CharacteristicsAndEquipmentDBControl();
 
             if (EditingTalent.StatIncreaseName == "None")
                 EditingTalent.StatIncrease = 0;

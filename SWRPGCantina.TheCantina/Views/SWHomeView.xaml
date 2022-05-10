@@ -104,7 +104,7 @@
                     <RowDefinition Height="7*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Command="{Binding NavigateCommand}" CommandParameter="SpecsAndTalents"
+                <Button Command="{Binding NavigateCommand}" CommandParameter="SpecsAndEquipment"
                  Height="350" Margin="5"
                 BorderThickness="5">
                     <Button.Style>

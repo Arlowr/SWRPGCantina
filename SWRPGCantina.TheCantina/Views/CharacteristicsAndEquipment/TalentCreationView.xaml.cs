@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SWRPGCantina.TheCantina.Views.SkillsAndTalents
+namespace SWRPGCantina.TheCantina.Views.CharacteristicsAndEquipment
 {
     /// <summary>
     /// Interaction logic for TalentCreationView

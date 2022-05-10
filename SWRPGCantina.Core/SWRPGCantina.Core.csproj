@@ -167,7 +167,7 @@
     <Compile Include="CoreModule.cs" />
     <Compile Include="Database\AlliesAndEnemiesDBControl.cs" />
     <Compile Include="Database\DBModels\DBSkillsList.cs" />
-    <Compile Include="Database\SkillsAndTalentsDBControl.cs" />
+    <Compile Include="Database\CharacteristicsAndEquipmentDBControl.cs" />
     <Compile Include="DependencyObjects\PackIconDependencyObject.cs" />
     <Compile Include="Generics\CloseTabAction.cs" />
     <Compile Include="Generics\generics.cs" />

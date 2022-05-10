@@ -83,10 +83,10 @@
     <Compile Include="ViewModels\AlliesAndEnemies\NPCMinionSkillsViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCTalentsViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCAbilitiesMainViewModel.cs" />
-    <Compile Include="ViewModels\SkillsAndTalents\SkillsTalentsMainViewModel.cs" />
+    <Compile Include="ViewModels\CharacteristicsAndEquipment\CharacteristicsEquipmentMainViewModel.cs" />
     <Compile Include="ViewModels\SWHomeViewModel.cs" />
-    <Compile Include="ViewModels\SkillsAndTalents\TalentsViewModel.cs" />
-    <Compile Include="ViewModels\SkillsAndTalents\TalentCreationViewModel.cs" />
+    <Compile Include="ViewModels\CharacteristicsAndEquipment\TalentsViewModel.cs" />
+    <Compile Include="ViewModels\CharacteristicsAndEquipment\TalentCreationViewModel.cs" />
     <Compile Include="Views\AlliesAndEnemies\NPCAbilitiesMainView.xaml.cs">
       <DependentUpon>NPCAbilitiesMainView.xaml</DependentUpon>
     </Compile>
@@ -111,13 +111,13 @@
     <Compile Include="Views\CantinaMainView.xaml.cs">
       <DependentUpon>CantinaMainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SkillsAndTalents\SkillsTalentsMainView.xaml.cs">
-      <DependentUpon>SkillsTalentsMainView.xaml</DependentUpon>
+    <Compile Include="Views\CharacteristicsAndEquipment\CharacteristicsEquipmentMainView.xaml.cs">
+      <DependentUpon>CharacteristicsEquipmentMainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SkillsAndTalents\TalentCreationView.xaml.cs">
+    <Compile Include="Views\CharacteristicsAndEquipment\TalentCreationView.xaml.cs">
       <DependentUpon>TalentCreationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SkillsAndTalents\TalentsView.xaml.cs">
+    <Compile Include="Views\CharacteristicsAndEquipment\TalentsView.xaml.cs">
       <DependentUpon>TalentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SWHomeView.xaml.cs">
@@ -157,15 +157,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SkillsAndTalents\SkillsTalentsMainView.xaml">
+    <Page Include="Views\CharacteristicsAndEquipment\CharacteristicsEquipmentMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SkillsAndTalents\TalentCreationView.xaml">
+    <Page Include="Views\CharacteristicsAndEquipment\TalentCreationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SkillsAndTalents\TalentsView.xaml">
+    <Page Include="Views\CharacteristicsAndEquipment\TalentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

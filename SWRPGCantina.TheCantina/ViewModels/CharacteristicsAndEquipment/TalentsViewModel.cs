@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static SWRPGCantina.Core.Models.Talent;
 
-namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
+namespace SWRPGCantina.TheCantina.ViewModels.CharacteristicsAndEquipment
 {
     public class TalentsViewModel : BindableBase
     {
@@ -65,7 +65,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
             UpdateTalentCommand = new DelegateCommand(UpdateTalentCommandHandler);
 
 
-            SkillsAndTalentsDBControl dbControl = new SkillsAndTalentsDBControl();
+            CharacteristicsAndEquipmentDBControl dbControl = new CharacteristicsAndEquipmentDBControl();
             TalentsList = dbControl.GetListOfTalents();
             
         }

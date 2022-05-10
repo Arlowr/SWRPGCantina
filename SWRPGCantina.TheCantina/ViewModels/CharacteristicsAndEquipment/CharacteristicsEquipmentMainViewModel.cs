@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SWRPGCantina.TheCantina.ViewModels.SkillsAndTalents
+namespace SWRPGCantina.TheCantina.ViewModels.CharacteristicsAndEquipment
 {
-    public class SkillsTalentsMainViewModel : BindableBase
+    public class CharacteristicsEquipmentMainViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
         public DelegateCommand<string> NavigateCommand { get; private set; }
-        public SkillsTalentsMainViewModel(IRegionManager regionManager)
+        public CharacteristicsEquipmentMainViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
             NavigateCommand = new DelegateCommand<string>(NavigateCommandHandler);

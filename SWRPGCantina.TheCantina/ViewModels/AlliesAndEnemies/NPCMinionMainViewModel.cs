@@ -39,6 +39,29 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
             set { SetProperty(ref _NPCDetailsWindowName, value); }
         }
 
+        private string _updateCharacterText;
+        public string UpdateCharacterText
+        {
+            get { return _updateCharacterText; }
+            set { SetProperty(ref _updateCharacterText, value); }
+        }
+
+        private string _characterName;
+        public string CharacterName
+        {
+            get { return _characterName; }
+            set
+            {
+                SetProperty(ref _characterName, value);
+                if (NPC.Name != CharacterName)
+                {
+                    NPC.Name = CharacterName;
+                    _eventAggregator.GetEvent<NPCUpdatedEvent>().Publish(_NPC);
+                }
+                UpdateCharacterText = "Update " + CharacterName;
+            }
+        }
+
         private NPC _NPC;
         public NPC NPC
         {
@@ -52,6 +75,7 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                 Cunning = NPC.Cunning;
                 Willpower = NPC.Willpower;
                 Presence = NPC.Presence;
+                CharacterName = NPC.Name;
             }
         }
 
@@ -232,6 +256,19 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                     else
                     {
                         _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCMinionSkillsView");
+                    }
+                    break;
+                case "Abilities":
+                    if (NPC != null)
+                    {
+                        var navParams = new NavigationParameters();
+                        navParams.Add("NPC", NPC);
+
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCAbilitiesMainView", navParams);
+                    }
+                    else
+                    {
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCAbilitiesMainView");
                     }
                     break;
                 default:

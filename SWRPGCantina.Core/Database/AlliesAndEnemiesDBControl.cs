@@ -25,6 +25,8 @@ namespace SWRPGCantina.Core.Database
             var skills = GetNPCSkillRanks(npcNeedingDetails.DBID);
 
             npcNeedingDetails = AddSkillsToNPC(skills, npcNeedingDetails);
+            npcNeedingDetails.Talents = GetNPCTalents(npcNeedingDetails.DBID);
+            npcNeedingDetails.Abilities = GetNPCAbilities(npcNeedingDetails.DBID);
 
             return npcNeedingDetails;
         }
@@ -269,9 +271,50 @@ namespace SWRPGCantina.Core.Database
             }
         }
 
+        public List<Ability> GetNPCAbilities(int npcID)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[GetNPCAbilities]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@NPCDBID", SqlDbType.VarChar).Value = npcID;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    SqlDataAdapter getNPCs = new SqlDataAdapter(cmd);
+
+                    DataSet dsT = new DataSet();
+                    getNPCs.Fill(dsT);
+                    var t = dsT.Tables[0].AsEnumerable().Select(o => new Ability()
+                    {
+                        DBID = o["Id"] != DBNull.Value ? o.Field<int>("Id") : 0,
+                        Name = o["AbilityName"] != DBNull.Value ? o.Field<string>("AbilityName") : "",
+                        CharacterDbId = o["AdversaryID"] != DBNull.Value ? o.Field<int>("AdversaryID") : 0,
+                        Effect = o["AbilityEffect"] != DBNull.Value ? o.Field<string>("AbilityEffect") : "",
+                        When = o["WhenUsable"] != DBNull.Value ? o.Field<string>("WhenUsable") : ""
+                    });
+
+                    conn.Close();
+
+                    return t.ToList();
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                throw;
+            }
+        }
+
         public bool AddOrUpdateAdversary(NPC npc)
         {
             string ListOfTalents = "";
+            string ListOfAbilities = "";
             bool first = true;
             foreach (var talent in npc.Talents)
             {
@@ -282,6 +325,19 @@ namespace SWRPGCantina.Core.Database
                 else
                 {
                     ListOfTalents = ListOfTalents + "," + talent.DbId.ToString();
+                }
+                first = false;
+            }
+            first = true;
+            foreach (var ability in npc.Abilities)
+            {
+                if(first)
+                {
+                    ListOfAbilities = ability.DBID.ToString();
+                }
+                else
+                {
+                    ListOfAbilities = ListOfAbilities + "," + ability.DBID.ToString();
                 }
                 first = false;
             }
@@ -391,6 +447,34 @@ namespace SWRPGCantina.Core.Database
                             cmd.ExecuteNonQuery();
                         }
                     }
+
+                    if (string.IsNullOrEmpty(ListOfAbilities))
+                    {
+                        cmd.CommandText = "[dbo].[RemoveNPCAbilities]";
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.Add("@NPCDBID", SqlDbType.Int).Value = npc.DBID;
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        cmd.CommandText = "[dbo].[AddUpdateAdversaryAbilities]";
+
+                        foreach (var ability in npc.Abilities)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.Add("@AbilityID", SqlDbType.Int).Value = ability.DBID;
+                            cmd.Parameters.Add("@NPCDBID", SqlDbType.Int).Value = ability.CharacterDbId;
+                            cmd.Parameters.Add("@ListOfAbilityIDsToKeep", SqlDbType.VarChar).Value = ListOfAbilities;
+                            cmd.Parameters.Add("@AbilityName", SqlDbType.VarChar).Value = ability.Name;
+                            cmd.Parameters.Add("@AbilityEffect", SqlDbType.VarChar).Value = ability.Effect;
+                            cmd.Parameters.Add("@WhenUsable", SqlDbType.VarChar).Value = ability.When;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+
+
+                    conn.Close();
 
                     return true;
                 }

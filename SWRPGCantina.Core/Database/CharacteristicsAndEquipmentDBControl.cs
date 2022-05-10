@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace SWRPGCantina.Core.Database
 {
-    public class SkillsAndTalentsDBControl
+    public class CharacteristicsAndEquipmentDBControl
     {
         private string DBCon { get; set; }
 
-        public SkillsAndTalentsDBControl()
+        public CharacteristicsAndEquipmentDBControl()
         {
             DBCon = generics.databaseLoc;
         }

@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace SWRPGCantina.TheCantina.Views.SkillsAndTalents
+namespace SWRPGCantina.TheCantina.Views.CharacteristicsAndEquipment
 {
     /// <summary>
     /// Interaction logic for SkillsTalentsMainView
     /// </summary>
-    public partial class SkillsTalentsMainView : UserControl
+    public partial class CharacteristicsEquipmentMainView : UserControl
     {
-        public SkillsTalentsMainView()
+        public CharacteristicsEquipmentMainView()
         {
             InitializeComponent();
         }
