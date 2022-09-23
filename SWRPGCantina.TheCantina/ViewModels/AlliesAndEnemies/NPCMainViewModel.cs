@@ -305,6 +305,19 @@ namespace SWRPGCantina.TheCantina.ViewModels.AlliesAndEnemies
                         _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCAbilitiesMainView");
                     }
                     break;
+                case "Equipment":
+                    if (NPC != null)
+                    {
+                        var navParams = new NavigationParameters();
+                        navParams.Add("NPC", NPC);
+
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCEquipmentMainView", navParams);
+                    }
+                    else
+                    {
+                        _regionManager.RequestNavigate(NPCDetailsWindowName, "NPCEquipmentMainView");
+                    }
+                    break;
                 default:
                     break;
             }

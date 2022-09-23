@@ -86,11 +86,16 @@
     <Compile Include="ViewModels\AlliesAndEnemies\NPCTalentsViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCAbilitiesMainViewModel.cs" />
     <Compile Include="ViewModels\CharacteristicsAndEquipment\CharacteristicsEquipmentMainViewModel.cs" />
+    <Compile Include="ViewModels\AlliesAndEnemies\NPCEquipmentMainViewModel.cs" />
+    <Compile Include="ViewModels\CharacteristicsAndEquipment\EquipmentViewModel.cs" />
     <Compile Include="ViewModels\SWHomeViewModel.cs" />
     <Compile Include="ViewModels\CharacteristicsAndEquipment\TalentsViewModel.cs" />
     <Compile Include="ViewModels\CharacteristicsAndEquipment\TalentCreationViewModel.cs" />
     <Compile Include="Views\AlliesAndEnemies\NPCAbilitiesMainView.xaml.cs">
       <DependentUpon>NPCAbilitiesMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlliesAndEnemies\NPCEquipmentMainView.xaml.cs">
+      <DependentUpon>NPCEquipmentMainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AlliesAndEnemies\NPCMainView.xaml.cs">
       <DependentUpon>NPCMainView.xaml</DependentUpon>
@@ -116,6 +121,9 @@
     <Compile Include="Views\CharacteristicsAndEquipment\CharacteristicsEquipmentMainView.xaml.cs">
       <DependentUpon>CharacteristicsEquipmentMainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CharacteristicsAndEquipment\EquipmentView.xaml.cs">
+      <DependentUpon>EquipmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CharacteristicsAndEquipment\TalentCreationView.xaml.cs">
       <DependentUpon>TalentCreationView.xaml</DependentUpon>
     </Compile>
@@ -128,6 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AlliesAndEnemies\NPCAbilitiesMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AlliesAndEnemies\NPCEquipmentMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CharacteristicsAndEquipment\CharacteristicsEquipmentMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CharacteristicsAndEquipment\EquipmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
