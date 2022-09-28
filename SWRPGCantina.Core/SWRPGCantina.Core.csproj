@@ -173,6 +173,8 @@
     <Compile Include="Models\Ability.cs" />
     <Compile Include="Models\Armour.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Equipment.cs" />
+    <Compile Include="Models\Gear.cs" />
     <Compile Include="Models\Injury.cs" />
     <Compile Include="Models\NPC.cs" />
     <Compile Include="Models\PlayerCharacter.cs" />

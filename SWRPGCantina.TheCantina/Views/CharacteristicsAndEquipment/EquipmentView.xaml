@@ -22,8 +22,8 @@
             <Button Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center"
                     Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
                     Margin="5" Padding="5" 
-                    Command="{Binding NewEquipmentCommand}">
-                <TextBlock Text="New Equipment" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Command="{Binding NewGearCommand}">
+                <TextBlock Text="New Gear" HorizontalAlignment="Center" VerticalAlignment="Center"
                         TextWrapping="Wrap" FontSize="12" FontWeight="Bold" Foreground="#FFE81F"/>
             </Button>
             <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -31,9 +31,9 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="330"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Equipment:" FontSize="16" FontWeight="DemiBold" Margin="2"/>
+                <TextBlock Text="Gear:" FontSize="16" FontWeight="DemiBold" Margin="2"/>
                 <ListBox Grid.Row="1" Height="350" Width="300" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                    ItemsSource="{Binding CharacterEquipmentList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCharacterEquipment}"
+                    ItemsSource="{Binding GearList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedGear}"
                     DisplayMemberPath="Name"/>
             </Grid>
             <Grid Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center">
@@ -45,14 +45,14 @@
                     Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
                     Margin="5" Padding="5" 
                     Command="{Binding UpdateCommand}">
-                    <TextBlock Text="Update Equipment" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    <TextBlock Text="Update Gear" HorizontalAlignment="Center" VerticalAlignment="Center"
                         TextWrapping="Wrap" FontSize="12" FontWeight="Bold" Foreground="#FFE81F"/>
                 </Button>
                 <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center"
                     Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
                     Margin="5" Padding="5" 
-                    Command="{Binding RemoveEquipmentCommand}">
-                    <TextBlock Text="Remove Equipment" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Command="{Binding RemoveGearCommand}">
+                    <TextBlock Text="Remove Gear" HorizontalAlignment="Center" VerticalAlignment="Center"
                         TextWrapping="Wrap" FontSize="12" FontWeight="Bold" Foreground="#FFE81F"/>
                 </Button>
             </Grid>
@@ -71,16 +71,16 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0"
                 Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <TextBlock Text="Equipment:" Margin="5" FontSize="16"/>
+                <TextBlock Text="Gear:" Margin="5" FontSize="16"/>
                 <TextBox Width="200" FontSize="16"
-                    Text="{Binding CurrentEquipment, UpdateSourceTrigger=PropertyChanged}"/>
+                    Text="{Binding CurrentGear, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1"
                 Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <TextBlock Text="Type" Margin="5" FontSize="16"/>
                 <ComboBox FontSize="12" MinHeight="30" MinWidth="120"
                                  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
-                                 ItemsSource="{Binding EquipmentTypes}" SelectedItem="{Binding SelectedEquipmentType}"/>
+                                 ItemsSource="{Binding GearTypes}" SelectedItem="{Binding SelectedGearType}"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"
                 Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -92,7 +92,7 @@
                     Background="SlateGray" BorderThickness="5" BorderBrush="Gray" Foreground="Black"
                     Margin="5" Padding="5" 
                     Command="{Binding AddCommand}">
-                <TextBlock Text="{Binding AddUpdateEquipmentText}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                <TextBlock Text="{Binding AddUpdateGearText}" HorizontalAlignment="Center" VerticalAlignment="Center"
                         TextWrapping="Wrap" FontSize="12" FontWeight="Bold" Foreground="#FFE81F"/>
             </Button>
 
