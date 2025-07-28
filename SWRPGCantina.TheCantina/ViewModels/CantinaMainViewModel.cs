@@ -32,6 +32,9 @@ namespace SWRPGCantina.TheCantina.ViewModels
                 case "NPCCreator":
                     _regionManager.RequestNavigate("SWContentRegion", "NPCsMainView");
                     break;
+                case "SpecEquipments":
+                    _regionManager.RequestNavigate("SWContentRegion", "CharacteristicsEquipmentMainView");
+                    break;
             }
         }
 

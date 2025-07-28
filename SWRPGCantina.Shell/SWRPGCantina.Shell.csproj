@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MyWPFCommonConverters">
-      <HintPath>..\..\..\..\source\repos\MyWPFCommonConverters\MyWPFCommonConverters\bin\Debug\MyWPFCommonConverters.dll</HintPath>
+      <HintPath>..\..\MyWPFCommonConverters\MyWPFCommonConverters\bin\Debug\MyWPFCommonConverters.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

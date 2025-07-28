@@ -14,70 +14,70 @@ namespace SWRPGCantina.TheCantina.ViewModels
     {
         protected readonly IEventAggregator _eventAggregator;
 
-        private string _addUpdateGearText;
-        public string AddUpdateGearText
+        private string _addUpdateEquipmentText;
+        public string AddUpdateEquipmentText
         {
-            get { return _addUpdateGearText; }
-            set { SetProperty(ref _addUpdateGearText, value); }
+            get { return _addUpdateEquipmentText; }
+            set { SetProperty(ref _addUpdateEquipmentText, value); }
         }
 
-        private string _currentGear;
-        public string CurrentGear
+        private string _currentEquipment;
+        public string CurrentEquipment
         {
-            get { return _currentGear; }
-            set { SetProperty(ref _currentGear, value); }
+            get { return _currentEquipment; }
+            set { SetProperty(ref _currentEquipment, value); }
         }
 
-        private Equipment _selectedGear;
-        public Equipment SelectedGear
+        private Equipment _selectedEquipment;
+        public Equipment SelectedEquipment
         {
-            get { return _selectedGear; }
-            set { SetProperty(ref _selectedGear, value); }
+            get { return _selectedEquipment; }
+            set { SetProperty(ref _selectedEquipment, value); }
         }
-        private List<Gear> _gearList;
-        public List<Gear> GearList
+        private List<Equipment> _equipmentList;
+        public List<Equipment> EquipmentList
         {
-            get { return _gearList; }
-            set { SetProperty(ref _gearList, value); }
+            get { return _equipmentList; }
+            set { SetProperty(ref _equipmentList, value); }
         }
-        public DelegateCommand UpdateSelectedGearCommand { get; private set; }
+        public DelegateCommand UpdateSelectedEquipmentCommand { get; private set; }
         public EquipmentViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
 
-            AddUpdateGearText = "Add New Equipment";
+            AddUpdateEquipmentText = "Add New Equipment";
 
-            UpdateSelectedGearCommand = new DelegateCommand(PassGearDetails);
+            UpdateSelectedEquipmentCommand = new DelegateCommand(PassEquipmentDetails);
 
             CharacteristicsAndEquipmentDBControl dbControl = new CharacteristicsAndEquipmentDBControl();
-            GearList = dbControl.GetListOfGear();
+            EquipmentList = dbControl.GetListOfEquipment();
         }
 
-        private void PassGearDetails()
+        private void PassEquipmentDetails()
         {
             throw new NotImplementedException();
         }
 
-        private void UpdateGearList()
+        private void UpdateEquipmentList()
         {
-            List<Gear> tempList = new List<Gear>();
+            List<Equipment> tempList = new List<Equipment>();
 
-            foreach (var gear in GearList)
+            foreach (var equipment in EquipmentList)
             {
-                tempList.Add(gear);
+                tempList.Add(equipment);
             }
 
-            GearList = new List<Gear>();
+            EquipmentList = new List<Equipment>();
 
-            foreach (var gear in tempList)
+            foreach (var equipment in tempList)
             {
-                GearList.Add(gear);
+                EquipmentList.Add(equipment);
             }
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            UpdateGearList();
+            UpdateEquipmentList();
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

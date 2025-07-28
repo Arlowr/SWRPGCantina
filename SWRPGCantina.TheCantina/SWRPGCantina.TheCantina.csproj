@@ -85,9 +85,11 @@
     <Compile Include="ViewModels\AlliesAndEnemies\NPCMinionSkillsViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCTalentsViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCAbilitiesMainViewModel.cs" />
+    <Compile Include="ViewModels\CharacteristicsAndEquipment\ArmourViewModel.cs" />
     <Compile Include="ViewModels\CharacteristicsAndEquipment\CharacteristicsEquipmentMainViewModel.cs" />
     <Compile Include="ViewModels\AlliesAndEnemies\NPCEquipmentMainViewModel.cs" />
     <Compile Include="ViewModels\CharacteristicsAndEquipment\EquipmentViewModel.cs" />
+    <Compile Include="ViewModels\CharacteristicsAndEquipment\WeaponsViewModel.cs" />
     <Compile Include="ViewModels\SWHomeViewModel.cs" />
     <Compile Include="ViewModels\CharacteristicsAndEquipment\TalentsViewModel.cs" />
     <Compile Include="ViewModels\CharacteristicsAndEquipment\TalentCreationViewModel.cs" />
@@ -129,6 +131,9 @@
     </Compile>
     <Compile Include="Views\CharacteristicsAndEquipment\TalentsView.xaml.cs">
       <DependentUpon>TalentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CharacteristicsAndEquipment\WeaponsView.xaml.cs">
+      <DependentUpon>WeaponsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SWHomeView.xaml.cs">
       <DependentUpon>SWHomeView.xaml</DependentUpon>
@@ -184,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CharacteristicsAndEquipment\TalentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CharacteristicsAndEquipment\WeaponsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

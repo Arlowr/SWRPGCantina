@@ -182,5 +182,133 @@ namespace SWRPGCantina.Core.Database
                 throw;
             }
         }
+        public List<Weapon> GetListOfWeapons()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[GetWeapons]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    SqlDataAdapter getWeapons = new SqlDataAdapter(cmd);
+
+                    DataSet dsT = new DataSet();
+                    getWeapons.Fill(dsT);
+                    var Weapons = dsT.Tables[0].AsEnumerable().Select(o => new Weapon()
+                    {
+                        DbId = o["Id"] != DBNull.Value ? o.Field<int>("Id") : 0,
+                        Name = o["WeaponName"] != DBNull.Value ? o.Field<string>("WeaponName") : "",
+                        Description = o["Description"] != DBNull.Value ? o.Field<string>("Description") : "",
+                        Encumbrance = o["Encumbrance"] != DBNull.Value ? o.Field<int>("Encumbrance") : 0,
+                        Price = o["Price"] != DBNull.Value ? o.Field<int>("Price") : 0,
+                        Rarity = o["Rarity"] != DBNull.Value ? o.Field<int>("Rarity") : 0,
+                        WeaponSkill = o["WeaponSkill"] != DBNull.Value ? o.Field<string>("WeaponSkill") : "",
+                        Damage = o["Damage"] != DBNull.Value ? o.Field<int>("Damage") : 0,
+                        CritValue = o["Crit"] != DBNull.Value ? o.Field<int>("Crit") : 0,
+                        Range = o["WeaponRange"] != DBNull.Value ? o.Field<string>("WeaponRange") : "",
+                        HardPoints = o["HardPoints"] != DBNull.Value ? o.Field<int>("HardPoints") : 0,
+                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                    }).ToList();
+
+                    conn.Close();
+
+                    return Weapons;
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                throw;
+            }
+        }
+        public List<Armour> GetListOfArmour()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[GetArmour]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    SqlDataAdapter getArmour = new SqlDataAdapter(cmd);
+
+                    DataSet dsT = new DataSet();
+                    getArmour.Fill(dsT);
+                    var Armour = dsT.Tables[0].AsEnumerable().Select(o => new Armour()
+                    {
+                        DbId = o["Id"] != DBNull.Value ? o.Field<int>("Id") : 0,
+                        Name = o["ArmourName"] != DBNull.Value ? o.Field<string>("ArmourName") : "",
+                        Description = o["Description"] != DBNull.Value ? o.Field<string>("Description") : "",
+                        Encumbrance = o["Encumbrance"] != DBNull.Value ? o.Field<int>("Encumbrance") : 0,
+                        Price = o["Price"] != DBNull.Value ? o.Field<int>("Price") : 0,
+                        Rarity = o["Rarity"] != DBNull.Value ? o.Field<int>("Rarity") : 0,
+                        Defence = o["Defence"] != DBNull.Value ? o.Field<int>("Defence") : 0,
+                        Soak = o["Soak"] != DBNull.Value ? o.Field<int>("Soak") : 0,
+                        HardPoints = o["HardPoints"] != DBNull.Value ? o.Field<int>("HardPoints") : 0,
+                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                    }).ToList();
+
+                    conn.Close();
+
+                    return Armour;
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                throw;
+            }
+        }
+        public List<Equipment> GetListOfEquipment()
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[GetEquipment]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    SqlDataAdapter getEquipment = new SqlDataAdapter(cmd);
+
+                    DataSet dsT = new DataSet();
+                    getEquipment.Fill(dsT);
+                    var Equipment = dsT.Tables[0].AsEnumerable().Select(o => new Equipment()
+                    {
+                        DbId = o["Id"] != DBNull.Value ? o.Field<int>("Id") : 0,
+                        Name = o["Item"] != DBNull.Value ? o.Field<string>("Item") : "",
+                        Description = o["ItemDescription"] != DBNull.Value ? o.Field<string>("ItemDescription") : "",
+                        Encumbrance = o["Encumbrance"] != DBNull.Value ? o.Field<int>("Encumbrance") : 0,
+                        Price = o["Price"] != DBNull.Value ? o.Field<int>("Price") : 0,
+                        Rarity = o["Rarity"] != DBNull.Value ? o.Field<int>("Rarity") : 0,
+                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                    }).ToList();
+
+                    conn.Close();
+
+                    return Equipment;
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                throw;
+            }
+        }
     }
 }

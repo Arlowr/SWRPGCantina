@@ -17,5 +17,6 @@ namespace SWRPGCantina.Core.Models
         public int Encumbrance { get; set; }
         public int HardPoints { get; set; }
         public int Rarity { get; set; }
+        public string Special { get; set; }
     }
 }
