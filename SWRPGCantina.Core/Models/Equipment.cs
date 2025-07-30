@@ -11,9 +11,10 @@ namespace SWRPGCantina.Core.Models
         public int DbId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ItemType { get; set; }
         public int Price { get; set; }
         public int Encumbrance { get; set; }
         public int Rarity { get; set; }
-        public string Special { get; set; }
+        public string Qualities { get; set; }
     }
 }

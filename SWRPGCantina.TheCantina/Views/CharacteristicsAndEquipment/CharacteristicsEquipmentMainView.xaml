@@ -55,7 +55,7 @@
                 Margin="10" Padding="2" 
                 Command="{Binding NavigateCommand}" CommandParameter="Equipment">
                 <TextBlock Text="Equipment"
-                    TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Foreground="Red" />
+                    TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Foreground="Yellow" />
             </Button>
         </Grid>
         <ContentControl Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="Transparent"

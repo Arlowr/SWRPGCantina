@@ -7,11 +7,13 @@ using SWRPGCantina.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static SWRPGCantina.Core.Models.NPC;
 
 namespace SWRPGCantina.TheCantina.ViewModels
 {
     public class EquipmentViewModel : BindableBase, INavigationAware
     {
+        private readonly IRegionManager _regionManager;
         protected readonly IEventAggregator _eventAggregator;
 
         private string _addUpdateEquipmentText;
@@ -40,7 +42,23 @@ namespace SWRPGCantina.TheCantina.ViewModels
             get { return _equipmentList; }
             set { SetProperty(ref _equipmentList, value); }
         }
+
+        private bool _updatedEquipment;
+        public bool UpdatedEquipment
+        {
+            get { return _updatedEquipment; }
+            set { SetProperty(ref _updatedEquipment, value); }
+        }
+
+        private bool _updateEquipmentSucess;
+        public bool UpdateEquipmentSucess
+        {
+            get { return _updateEquipmentSucess; }
+            set { SetProperty(ref _updateEquipmentSucess, value); }
+        }
+
         public DelegateCommand UpdateSelectedEquipmentCommand { get; private set; }
+        public DelegateCommand AddCommand { get; private set; }
         public EquipmentViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
@@ -48,6 +66,7 @@ namespace SWRPGCantina.TheCantina.ViewModels
             AddUpdateEquipmentText = "Add New Equipment";
 
             UpdateSelectedEquipmentCommand = new DelegateCommand(PassEquipmentDetails);
+            AddCommand = new DelegateCommand(UpdateEquipment, CanUpdateEquipment);
 
             CharacteristicsAndEquipmentDBControl dbControl = new CharacteristicsAndEquipmentDBControl();
             EquipmentList = dbControl.GetListOfEquipment();
@@ -73,6 +92,23 @@ namespace SWRPGCantina.TheCantina.ViewModels
             {
                 EquipmentList.Add(equipment);
             }
+        }
+
+        private bool CanUpdateEquipment()
+        {
+            return true;
+        }
+
+        private void UpdateEquipment()
+        {
+            UpdatedEquipment = false;
+
+            CharacteristicsAndEquipmentDBControl dbConnection = new CharacteristicsAndEquipmentDBControl();
+            UpdateEquipmentSucess = dbConnection.AddOrUpdateEquipment(SelectedEquipment);
+
+            UpdatedEquipment = true;
+
+            //_eventAggregator.GetEvent<EquipmentDBUpdatedEvent>().Publish();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

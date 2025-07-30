@@ -16,7 +16,7 @@ namespace SWRPGCantina.Core.Models
         public int HardPoints { get; set; }
         public int Price { get; set; }
         public int Rarity { get; set; }
-        public string Special { get; set; }
+        public string Qualities { get; set; }
 
         // Needed for Weapons
         public string WeaponSkill { get; set; }

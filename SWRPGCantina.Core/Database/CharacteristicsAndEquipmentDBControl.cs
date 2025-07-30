@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SWRPGCantina.Core.Database
 {
@@ -140,7 +141,7 @@ namespace SWRPGCantina.Core.Database
                         CritValue = o["Crit"] != DBNull.Value ? o.Field<int>("Crit") : 0,
                         Range = o["WeaponRange"] != DBNull.Value ? o.Field<string>("WeaponRange") : "",
                         HardPoints = o["HardPoints"] != DBNull.Value ? o.Field<int>("HardPoints") : 0,
-                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                        Qualities = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
                     });
                     var ArmourTable = dsT.Tables[2].AsEnumerable().Select(o => new Gear()
                     {
@@ -154,7 +155,7 @@ namespace SWRPGCantina.Core.Database
                         Defence = o["Defence"] != DBNull.Value ? o.Field<int>("Defence") : 0,
                         Soak = o["Soak"] != DBNull.Value ? o.Field<int>("Soak") : 0,
                         HardPoints = o["HardPoints"] != DBNull.Value ? o.Field<int>("HardPoints") : 0,
-                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                        Qualities = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
                     });
 
                     conn.Close();
@@ -213,7 +214,7 @@ namespace SWRPGCantina.Core.Database
                         CritValue = o["Crit"] != DBNull.Value ? o.Field<int>("Crit") : 0,
                         Range = o["WeaponRange"] != DBNull.Value ? o.Field<string>("WeaponRange") : "",
                         HardPoints = o["HardPoints"] != DBNull.Value ? o.Field<int>("HardPoints") : 0,
-                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                        Qualities = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
                     }).ToList();
 
                     conn.Close();
@@ -253,10 +254,11 @@ namespace SWRPGCantina.Core.Database
                         Encumbrance = o["Encumbrance"] != DBNull.Value ? o.Field<int>("Encumbrance") : 0,
                         Price = o["Price"] != DBNull.Value ? o.Field<int>("Price") : 0,
                         Rarity = o["Rarity"] != DBNull.Value ? o.Field<int>("Rarity") : 0,
-                        Defence = o["Defence"] != DBNull.Value ? o.Field<int>("Defence") : 0,
+                        RangedDefence = o["RangedDefence"] != DBNull.Value ? o.Field<int>("RangedDefence") : 0,
+                        MeleeDefence = o["MeleeDefence"] != DBNull.Value ? o.Field<int>("MeleeDefence") : 0,
                         Soak = o["Soak"] != DBNull.Value ? o.Field<int>("Soak") : 0,
                         HardPoints = o["HardPoints"] != DBNull.Value ? o.Field<int>("HardPoints") : 0,
-                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                        Qualities = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
                     }).ToList();
 
                     conn.Close();
@@ -293,10 +295,11 @@ namespace SWRPGCantina.Core.Database
                         DbId = o["Id"] != DBNull.Value ? o.Field<int>("Id") : 0,
                         Name = o["Item"] != DBNull.Value ? o.Field<string>("Item") : "",
                         Description = o["ItemDescription"] != DBNull.Value ? o.Field<string>("ItemDescription") : "",
+                        ItemType = o["ItemType"] != DBNull.Value ? o.Field<string>("ItemType") : "",
                         Encumbrance = o["Encumbrance"] != DBNull.Value ? o.Field<int>("Encumbrance") : 0,
                         Price = o["Price"] != DBNull.Value ? o.Field<int>("Price") : 0,
                         Rarity = o["Rarity"] != DBNull.Value ? o.Field<int>("Rarity") : 0,
-                        Special = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
+                        Qualities = o["Qualities"] != DBNull.Value ? o.Field<string>("Qualities") : ""
                     }).ToList();
 
                     conn.Close();
@@ -308,6 +311,120 @@ namespace SWRPGCantina.Core.Database
             {
                 Console.WriteLine(a);
                 throw;
+            }
+        }
+
+
+        public bool AddOrUpdateWeapon(Weapon Weapon)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[AddUpdateWeapon]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@WeaponId", SqlDbType.VarChar).Value = Weapon.DbId;
+                    cmd.Parameters.Add("@Weapon_Name", SqlDbType.VarChar).Value = Weapon.Name;
+                    cmd.Parameters.Add("@Weapon_Text", SqlDbType.VarChar).Value = Weapon.Description;
+                    cmd.Parameters.Add("@Price", SqlDbType.VarChar).Value = Weapon.Price;
+                    cmd.Parameters.Add("@Encumbrance", SqlDbType.VarChar).Value = Weapon.Encumbrance;
+                    cmd.Parameters.Add("@Rarity", SqlDbType.VarChar).Value = Weapon.Rarity;
+                    cmd.Parameters.Add("@WeaponSkill", SqlDbType.VarChar).Value = Weapon.WeaponSkill;
+                    cmd.Parameters.Add("@Damage", SqlDbType.VarChar).Value = Weapon.Damage;
+                    cmd.Parameters.Add("@CritValue", SqlDbType.VarChar).Value = Weapon.CritValue;
+                    cmd.Parameters.Add("@Range", SqlDbType.VarChar).Value = Weapon.Range;
+                    cmd.Parameters.Add("@HardPoints", SqlDbType.VarChar).Value = Weapon.HardPoints;
+                    cmd.Parameters.Add("@SingleHanded", SqlDbType.VarChar).Value = Weapon.SingleHanded;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                return false;
+            }
+        }
+        public bool AddOrUpdateArmour(Armour Armour)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[AddUpdateArmour]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ArmourId", SqlDbType.VarChar).Value = Armour.DbId;
+                    cmd.Parameters.Add("@Armour_Name", SqlDbType.VarChar).Value = Armour.Name;
+                    cmd.Parameters.Add("@Armour_Text", SqlDbType.VarChar).Value = Armour.Description;
+                    cmd.Parameters.Add("@Price", SqlDbType.VarChar).Value = Armour.Price;
+                    cmd.Parameters.Add("@Encumbrance", SqlDbType.VarChar).Value = Armour.Encumbrance;
+                    cmd.Parameters.Add("@Rarity", SqlDbType.VarChar).Value = Armour.Rarity;
+                    cmd.Parameters.Add("@Qualities", SqlDbType.VarChar).Value = Armour.Qualities;
+                    cmd.Parameters.Add("@MeleeDefence", SqlDbType.VarChar).Value = Armour.MeleeDefence;
+                    cmd.Parameters.Add("@RangedDefence", SqlDbType.VarChar).Value = Armour.RangedDefence;
+                    cmd.Parameters.Add("@Soak", SqlDbType.VarChar).Value = Armour.Soak;
+                    cmd.Parameters.Add("@HardPoints", SqlDbType.VarChar).Value = Armour.HardPoints;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                return false;
+            }
+        }
+        public bool AddOrUpdateEquipment(Equipment Equipment)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    SqlConnection conn = new SqlConnection(DBCon);
+                    cmd.CommandText = "[dbo].[AddUpdateEquipment]";
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@EquipmentId", SqlDbType.VarChar).Value = Equipment.DbId;
+                    cmd.Parameters.Add("@Equipment_Name", SqlDbType.VarChar).Value = Equipment.Name;
+                    cmd.Parameters.Add("@Equipment_Text", SqlDbType.VarChar).Value = Equipment.Description;
+                    cmd.Parameters.Add("@ItemType", SqlDbType.VarChar).Value = Equipment.ItemType;
+                    cmd.Parameters.Add("@Price", SqlDbType.VarChar).Value = Equipment.Price;
+                    cmd.Parameters.Add("@Encumbrance", SqlDbType.VarChar).Value = Equipment.Encumbrance;
+                    cmd.Parameters.Add("@Rarity", SqlDbType.VarChar).Value = Equipment.Rarity;
+                    cmd.Parameters.Add("@Qualities", SqlDbType.VarChar).Value = Equipment.Qualities;
+                    cmd.CommandTimeout = 300;
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception a)
+            {
+                Console.WriteLine(a);
+                return false;
             }
         }
     }

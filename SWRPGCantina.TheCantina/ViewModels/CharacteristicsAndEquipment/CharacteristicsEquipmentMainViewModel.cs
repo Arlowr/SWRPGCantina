@@ -28,13 +28,13 @@ namespace SWRPGCantina.TheCantina.ViewModels.CharacteristicsAndEquipment
                     _regionManager.RequestNavigate("SkillTalentRegion", "TalentsView");
                     break;
                 case "Weapons":
-                    //_regionManger.RequestNavigate("SkillTalentRegion", "WeaponsView");
+                    //_regionManager.RequestNavigate("SkillTalentRegion", "WeaponsView");
                     break;
                 case "Armour":
-                    //_regionManger.RequestNavigate("SkillTalentRegion", "ArmourView");
+                    //_regionManager.RequestNavigate("SkillTalentRegion", "ArmourView");
                     break;
                 case "Equipment":
-                    //_regionManger.RequestNavigate("SkillTalentRegion", "EquipmentView");
+                    _regionManager.RequestNavigate("SkillTalentRegion", "EquipmentView");
                     break;
                 default:
                     break;
